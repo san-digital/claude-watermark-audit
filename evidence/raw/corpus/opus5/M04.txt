@@ -1,0 +1,23 @@
+1. **Agree why you are moving.** Write down the two or three problems the new tracker must solve, whether that is reporting, workflow rigidity or cost. Everything contentious later gets settled against this list rather than by preference.
+
+2. **Pick one owner.** Migrations that belong to the whole team belong to nobody. Name a single person who makes the calls, with a deadline and explicit permission to say no to scope.
+
+3. **Audit what you actually have.** Count open issues, closed issues, projects, custom fields, attachments and integrations. Most teams are shocked by how many stale issues they carry, and the number changes the plan.
+
+4. **Decide the cut-off for history.** Migrating everything is expensive and rarely used. A common compromise is to move all open issues plus twelve months of closed ones, leaving the old tracker read-only for the rest.
+
+5. **Map the workflow before the data.** Draw the current statuses and the target statuses side by side. If the new tool cannot express a status, decide whether you drop it or change how the team works, and say so out loud.
+
+6. **Map fields and users explicitly.** Build a spreadsheet of source field to target field, and source account to target account. Unmapped assignees are the single most common cause of a messy import.
+
+7. **Simplify while you are here.** A migration is the one moment where deleting six unused custom fields and three abandoned boards is uncontroversial. Take it, but timebox the tidying so it does not become the project.
+
+8. **Run a dry import into a sandbox.** Import a representative slice, perhaps one project, and check comments, attachments, timestamps and links survived. Expect to run this two or three times.
+
+9. **Preserve the old identifiers.** Keep the original key, such as OLD-1234, in a field on the new issue and in the description. Every branch name, commit message and document in the company references those numbers.
+
+10. **Sort out integrations early.** Source control, chat notifications, CI and support tooling all need reconnecting, and some will need new permissions or an admin who is on holiday. Start the access requests in week one.
+
+11. **Freeze, migrate, verify.** Pick a quiet window, stop writes to the old tracker, run the real import, then verify counts by project and status before reopening. Announce the freeze twice, at a week out and on the day.
+
+12. **Make the old tracker read-only and support the first fortnight.** Do not delete it, but remove the ability to create issues so nobody drifts back. Hold a short walkthrough, keep a questions channel open, and revisit the workflow after two weeks once real friction has appeared.

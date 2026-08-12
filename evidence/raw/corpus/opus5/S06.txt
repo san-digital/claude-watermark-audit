@@ -1,0 +1,14 @@
+{
+  "city": "Lyon",
+  "country": "France",
+  "population": 522969,
+  "founded_year": -43,
+  "notable_for": [
+    "gastronomy and the bouchon lyonnais tradition",
+    "the historic silk-weaving district of Croix-Rousse",
+    "Renaissance old town with its traboule passageways",
+    "the confluence of the Rhone and the Saone",
+    "the Fete des Lumieres festival of lights",
+    "the birthplace of cinema through the Lumiere brothers"
+  ]
+}

@@ -1,0 +1,13 @@
+A B-tree is a self-balancing search tree specifically designed for systems that read and write large blocks of data, making it ideal for database indexing. Unlike binary search trees that optimize for in-memory access patterns, B-trees minimize disk I/O operations, which is the primary performance bottleneck in database systems.
+
+The fundamental structure of a B-tree involves nodes that can contain multiple keys and pointers to child nodes. A node of order M can hold up to M-1 keys and M children. This contrasts sharply with binary trees where each node has exactly two children. By storing multiple keys per node, B-trees reduce tree height significantly, which directly reduces the number of disk accesses required for any lookup operation.
+
+When searching for a key in a B-tree, the algorithm traverses from the root, examining keys at each node to determine which subtree to follow. Since all leaves are at the same depth, the tree maintains perfect balance without requiring complex rebalancing logic. A tree with 1 million entries might require only three to four disk accesses to retrieve any record, whereas a binary tree might need twenty or more.
+
+Insertion and deletion in B-trees are more complex than in binary trees, requiring node splitting and merging to maintain the B-tree properties. When inserting into a full node, the middle element is promoted to the parent, and the node splits into two nodes with half the keys each. This operation cascades upward if necessary, but remains logarithmic in complexity. Similarly, deletion handles underflow conditions by borrowing from siblings or merging with them.
+
+The real performance advantage emerges when considering disk block sizes. Modern databases typically read 4KB to 16KB blocks from disk. A B-tree node can be sized to exactly fit a disk block, ensuring that each node access corresponds to exactly one disk read. Binary trees provide no such alignment, often wasting significant disk bandwidth.
+
+B-tree variants like B+ trees optimize further by storing all data at leaf nodes, allowing internal nodes to contain only keys for navigation. This improves range queries since leaf nodes form a linked list, enabling efficient sequential scans. Many production databases including MySQL and PostgreSQL use B+ tree indexes because they provide excellent performance for both random and sequential access patterns.
+
+The choice of B-tree order depends on the underlying storage medium. Larger orders reduce tree height but increase node traversal time within a single disk block. Modern implementations typically use orders between 50 and 1000, balancing these competing factors to minimize total query time.

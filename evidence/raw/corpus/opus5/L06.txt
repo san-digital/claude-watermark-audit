@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "name": "Wright Flyer",
+    "country": "United States",
+    "first_flight_year": 1903,
+    "role": "Experimental",
+    "crew": 1,
+    "notes": "The first powered, heavier-than-air machine to make a sustained and controlled flight with a pilot aboard, at Kitty Hawk in December 1903. Its decisive innovation was not the engine but three-axis control through wing warping. The longest of the four flights that day covered 852 feet in 59 seconds."
+  },
+  {
+    "id": 2,
+    "name": "Bleriot XI",
+    "country": "France",
+    "first_flight_year": 1909,
+    "role": "Sport and reconnaissance monoplane",
+    "crew": 1,
+    "notes": "Louis Bleriot flew this small monoplane across the English Channel in July 1909, winning a Daily Mail prize and demonstrating that aircraft could cross national borders. The design was widely copied and served as a trainer and scout in the early part of the First World War. Its tractor monoplane layout influenced aircraft design for decades."
+  },
+  {
+    "id": 3,
+    "name": "Sopwith Camel",
+    "country": "United Kingdom",
+    "first_flight_year": 1916,
+    "role": "Fighter",
+    "crew": 1,
+    "notes": "The most successful British fighter of the First World War, credited with more aerial victories than any other Allied type. Its concentrated mass and the gyroscopic effect of the rotary engine made it viciously quick to turn right and dangerous to inexperienced pilots. Many trainees were killed learning to handle it."
+  },
+  {
+    "id": 4,
+    "name": "Fokker Dr.I",
+    "country": "Germany",
+    "first_flight_year": 1917,
+    "role": "Fighter",
+    "crew": 1,
+    "notes": "A triplane built for rate of climb and manoeuvrability rather than speed, produced in relatively small numbers. It is remembered chiefly because Manfred von Richthofen flew one and was killed in one in April 1918. Early examples suffered wing failures traced to poor manufacturing quality."
+  },
+  {
+    "id": 5,
+    "name": "Ford Trimotor",
+    "country": "United States",
+    "first_flight_year": 1926,
+    "role": "Airliner",
+    "crew": 2,
+    "notes": "An all-metal corrugated-skin airliner nicknamed the Tin Goose, carrying around a dozen passengers. It made scheduled air travel in the United States commercially plausible for the first time and was rugged enough to operate from rough strips. A number remained in commercial service well into the 1960s."
+  },
+  {
+    "id": 6,
+    "name": "Junkers Ju 52",
+    "country": "Germany",
+    "first_flight_year": 1930,
+    "role": "Transport",
+    "crew": 3,
+    "notes": "A trimotor of corrugated duralumin construction that served both as an airliner and as the Luftwaffe's standard transport throughout the Second World War. Its slow speed and low landing requirements made it ideal for paratroop drops and resupply into rough fields. Around five thousand were built, and licensed production continued in Spain into the 1950s."
+  },
+  {
+    "id": 7,
+    "name": "Douglas DC-3",
+    "country": "United States",
+    "first_flight_year": 1935,
+    "role": "Airliner and transport",
+    "crew": 3,
+    "notes": "Widely regarded as the aircraft that made airlines profitable carrying passengers alone, without mail subsidy. More than sixteen thousand were built including the military C-47 variant, which was central to Allied logistics and airborne operations. Hundreds remain airworthy today, an unmatched record of longevity."
+  },
+  {
+    "id": 8,
+    "name": "Messerschmitt Bf 109",
+    "country": "Germany",
+    "first_flight_year": 1935,
+    "role": "Fighter",
+    "crew": 1,
+    "notes": "The most-produced fighter aircraft in history, with roughly 34,000 built across many variants. It combined the smallest possible airframe with the most powerful available engine, an approach that gave excellent performance but a narrow, fragile undercarriage responsible for enormous numbers of accidents. It remained in front-line German service from 1937 to 1945."
+  },
+  {
+    "id": 9,
+    "name": "Supermarine Spitfire",
+    "country": "United Kingdom",
+    "first_flight_year": 1936,
+    "role": "Fighter",
+    "crew": 1,
+    "notes": "R. J. Mitchell's elliptical-winged fighter became the emblem of the Battle of Britain, though Hurricanes were more numerous in that campaign. The thin wing gave a high critical Mach number and left room for successive engine upgrades, so the type stayed competitive from 1938 to 1945. Later marks were nearly twice as powerful as the first."
+  },
+  {
+    "id": 10,
+    "name": "Boeing B-17 Flying Fortress",
+    "country": "United States",
+    "first_flight_year": 1935,
+    "role": "Heavy bomber",
+    "crew": 10,
+    "notes": "A four-engined bomber that formed the backbone of the American daylight bombing campaign over Europe. Its heavy defensive armament and reputation for absorbing damage made it popular with crews, although unescorted formations still suffered catastrophic losses until long-range fighters arrived. Nearly thirteen thousand were built."
+  },
+  {
+    "id": 11,
+    "name": "Mitsubishi A6M Zero",
+    "country": "Japan",
+    "first_flight_year": 1939,
+    "role": "Carrier fighter",
+    "crew": 1,
+    "notes": "A carrier fighter of exceptional range and manoeuvrability, achieved by extreme weight saving that left it with almost no armour or self-sealing fuel tanks. It dominated the Pacific in 1941 and 1942 before Allied tactics and heavier, faster aircraft neutralised its advantages. The same lightness that made it agile made it fatally vulnerable."
+  },
+  {
+    "id": 12,
+    "name": "Avro Lancaster",
+    "country": "United Kingdom",
+    "first_flight_year": 1941,
+    "role": "Heavy bomber",
+    "crew": 7,
+    "notes": "Developed from the unsuccessful twin-engined Manchester, the Lancaster became the RAF's principal night bomber. Its long unobstructed bomb bay allowed it to carry the largest weapons of the war, including the 22,000 pound Grand Slam. Around 7,300 were built and roughly half were lost in action."
+  },
+  {
+    "id": 13,
+    "name": "North American P-51 Mustang",
+    "country": "United States",
+    "first_flight_year": 1940,
+    "role": "Fighter",
+    "crew": 1,
+    "notes": "Originally built to a British specification and initially disappointing at altitude, the Mustang was transformed by fitting the Rolls-Royce Merlin engine. The resulting combination of speed, altitude performance and very long range allowed it to escort bombers all the way to Berlin and back. That capability materially changed the air war over Germany."
+  },
+  {
+    "id": 14,
+    "name": "Messerschmitt Me 262",
+    "country": "Germany",
+    "first_flight_year": 1942,
+    "role": "Jet fighter",
+    "crew": 1,
+    "notes": "The first jet fighter to enter operational service, roughly 120 mph faster than any piston-engined opponent. Development was delayed by engine problems, material shortages and shifting official requirements, and it arrived far too late and in too few numbers to affect the outcome. Its Junkers Jumo engines had a service life measured in tens of hours."
+  },
+  {
+    "id": 15,
+    "name": "Boeing B-29 Superfortress",
+    "country": "United States",
+    "first_flight_year": 1942,
+    "role": "Heavy bomber",
+    "crew": 11,
+    "notes": "A pressurised, remotely-gunned bomber representing an enormous technical leap and an even more enormous development cost, greater than the Manhattan Project itself. It conducted the strategic campaign against Japan, including the two atomic missions in August 1945. Copied without licence by the Soviet Union as the Tupolev Tu-4."
+  },
+  {
+    "id": 16,
+    "name": "Bell X-1",
+    "country": "United States",
+    "first_flight_year": 1946,
+    "role": "Experimental rocket aircraft",
+    "crew": 1,
+    "notes": "A rocket-powered research aircraft shaped deliberately like a .50 calibre bullet, air-launched from a modified B-29. Chuck Yeager flew it past Mach 1 in level flight in October 1947, ending speculation that a sound barrier presented a physical limit. Its all-moving tailplane solved the control reversal that had killed earlier high-speed test pilots."
+  },
+  {
+    "id": 17,
+    "name": "de Havilland Comet",
+    "country": "United Kingdom",
+    "first_flight_year": 1949,
+    "role": "Jet airliner",
+    "crew": 4,
+    "notes": "The world's first jet airliner to enter commercial service, offering passengers a dramatic improvement in speed, smoothness and cabin quiet. A series of catastrophic in-flight break-ups in 1953 and 1954 were traced to metal fatigue originating at the corners of the square window cutouts. The investigation transformed aviation structural engineering, largely to the benefit of competitors."
+  },
+  {
+    "id": 18,
+    "name": "Lockheed C-130 Hercules",
+    "country": "United States",
+    "first_flight_year": 1954,
+    "role": "Tactical transport",
+    "crew": 5,
+    "notes": "A high-wing turboprop transport with a rear ramp, designed to operate from short and unprepared strips. It has been in continuous production longer than any other military aircraft, with variants serving as gunships, tankers, hurricane hunters and firefighters. More than seventy countries have operated the type."
+  },
+  {
+    "id": 19,
+    "name": "Lockheed U-2",
+    "country": "United States",
+    "first_flight_year": 1955,
+    "role": "High-altitude reconnaissance",
+    "crew": 1,
+    "notes": "Essentially a jet-powered glider designed to cruise above 70,000 feet, beyond the reach of contemporary interceptors. The shooting down of Gary Powers over the Soviet Union in 1960 caused a major diplomatic crisis and ended that assumption of invulnerability. Its narrow margin between stall and critical Mach number at altitude is known to pilots as coffin corner."
+  },
+  {
+    "id": 20,
+    "name": "Boeing 707",
+    "country": "United States",
+    "first_flight_year": 1957,
+    "role": "Jet airliner",
+    "crew": 3,
+    "notes": "The aircraft that made intercontinental jet travel routine and commercially dominant for American manufacturers. Its swept wing with podded engines on pylons established the configuration that nearly every large airliner has used since. The prototype's famous barrel roll over Lake Washington was performed without company authorisation."
+  },
+  {
+    "id": 21,
+    "name": "Hawker Siddeley Harrier",
+    "country": "United Kingdom",
+    "first_flight_year": 1967,
+    "role": "VTOL ground attack",
+    "crew": 1,
+    "notes": "The first operational fixed-wing aircraft capable of vertical take-off and landing, using four rotating nozzles on a single vectored-thrust engine. It allowed combat aircraft to operate from clearings, roads and very small carriers without catapults. Sea Harriers proved the concept decisively during the Falklands conflict in 1982."
+  },
+  {
+    "id": 22,
+    "name": "Concorde",
+    "country": "United Kingdom and France",
+    "first_flight_year": 1969,
+    "role": "Supersonic airliner",
+    "crew": 3,
+    "notes": "An Anglo-French supersonic transport cruising at Mach 2 and around 60,000 feet, crossing the Atlantic in under three and a half hours. Only twenty were built, as sonic boom restrictions, fuel costs and the 1973 oil crisis destroyed the anticipated market. It was withdrawn in 2003 after the Paris crash of 2000 and a collapse in traffic."
+  },
+  {
+    "id": 23,
+    "name": "Boeing 747",
+    "country": "United States",
+    "first_flight_year": 1969,
+    "role": "Wide-body airliner",
+    "crew": 3,
+    "notes": "The first wide-body aircraft, with a partial upper deck created by placing the cockpit above the main cabin so the nose could hinge open for freight. Its capacity roughly halved seat-mile costs and put long-haul travel within reach of ordinary incomes. Boeing effectively bet the company on the programme and very nearly lost it."
+  },
+  {
+    "id": 24,
+    "name": "Lockheed SR-71 Blackbird",
+    "country": "United States",
+    "first_flight_year": 1964,
+    "role": "Strategic reconnaissance",
+    "crew": 2,
+    "notes": "A titanium reconnaissance aircraft cruising above Mach 3, whose airframe was designed to leak fuel on the ground because the panels only sealed once thermal expansion tightened them. Its standard response to a surface-to-air missile launch was simply to accelerate away. No SR-71 was ever lost to hostile action."
+  },
+  {
+    "id": 25,
+    "name": "Antonov An-225 Mriya",
+    "country": "Soviet Union",
+    "first_flight_year": 1988,
+    "role": "Strategic airlift",
+    "crew": 6,
+    "notes": "The largest and heaviest aeroplane ever built, with six engines and a thirty-two wheel undercarriage, designed to carry the Buran space shuttle on its back. Only one was ever completed, and it later found a second career carrying outsized commercial cargo. It was destroyed on the ground at Hostomel airport in February 2022."
+  }
+]

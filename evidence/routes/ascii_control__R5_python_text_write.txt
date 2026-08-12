@@ -1,0 +1,11 @@
+ASCII-CONTROL-V1 claude-watermark-audit
+Straight quotes: 'single' and "double" and it's a contraction.
+Dashes: hyphen - and double-hyphen -- and triple---hyphen.
+Dots: three dots ... and a full stop.
+Symbols: !#$%&()*+,./:;<=>?@[\]^_`{|}~
+Digits: 0123456789
+A tab follows:	after the tab.
+Spacing: single space, then two  spaces, then three   spaces.
+The quick brown fox jumps over the lazy dog. 0123456789.
+This line ends with CRLF.
+This line ends with LF.

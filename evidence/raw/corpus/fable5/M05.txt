@@ -1,0 +1,96 @@
+"""A small least-recently-used (LRU) cache.
+
+Provides an LRUCache class with get and put operations, both O(1),
+backed by a hash map and a doubly linked list. When the cache exceeds
+its configured capacity, the least recently used entry is evicted.
+"""
+
+
+class _Node:
+    """A doubly linked list node holding one cache entry."""
+
+    __slots__ = ("key", "value", "prev", "next")
+
+    def __init__(self, key=None, value=None):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+
+class LRUCache:
+    """An LRU cache with a fixed capacity.
+
+    Entries are kept in a doubly linked list ordered from most to
+    least recently used. A dictionary maps keys to list nodes so both
+    lookup and reordering run in constant time.
+    """
+
+    def __init__(self, capacity=128):
+        if capacity < 1:
+            raise ValueError("capacity must be at least 1")
+        self.capacity = capacity
+        self._map = {}
+        # Sentinel head and tail avoid edge cases when the list is empty.
+        self._head = _Node()
+        self._tail = _Node()
+        self._head.next = self._tail
+        self._tail.prev = self._head
+
+    def __len__(self):
+        return len(self._map)
+
+    def _remove(self, node):
+        """Unlink a node from the list."""
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+    def _push_front(self, node):
+        """Insert a node just after the head (most recently used)."""
+        node.next = self._head.next
+        node.prev = self._head
+        self._head.next.prev = node
+        self._head.next = node
+
+    def get(self, key, default=None):
+        """Return the value for key, marking it most recently used.
+
+        Returns default if the key is not present.
+        """
+        node = self._map.get(key)
+        if node is None:
+            return default
+        self._remove(node)
+        self._push_front(node)
+        return node.value
+
+    def put(self, key, value):
+        """Insert or update a key, evicting the LRU entry if full."""
+        node = self._map.get(key)
+        if node is not None:
+            node.value = value
+            self._remove(node)
+            self._push_front(node)
+            return
+        if len(self._map) >= self.capacity:
+            # Evict the node just before the tail sentinel.
+            lru = self._tail.prev
+            self._remove(lru)
+            del self._map[lru.key]
+        node = _Node(key, value)
+        self._map[key] = node
+        self._push_front(node)
+
+    def __contains__(self, key):
+        return key in self._map
+
+
+if __name__ == "__main__":
+    cache = LRUCache(capacity=2)
+    cache.put("a", 1)
+    cache.put("b", 2)
+    assert cache.get("a") == 1
+    cache.put("c", 3)  # evicts "b", the least recently used
+    assert cache.get("b") is None
+    assert cache.get("c") == 3
+    print("LRUCache self-test passed")

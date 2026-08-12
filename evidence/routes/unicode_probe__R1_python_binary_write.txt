@@ -1,0 +1,13 @@
+UNICODE-PROBE-V1 claude-watermark-audit
+ZWSP[​] ZWNJ[‌] ZWJ[‍] WJ[⁠] BOM[﻿] SHY[­]
+NBSP[ ] NNBSP[ ] ENSP[ ] EMSP[ ] THINSP[ ] IDSP[　]
+LRM[‎] RLM[‏] LRI[⁦] RLI[⁧] PDI[⁩] RLO[‮] PDF[‬]
+VS15[︎] VS16[️] VS17[󠄀]
+TAGS[󠀁󠁈󠁉󠁿]
+COMBINING[é ä̧]
+HOMOGLYPH[pаypаl sеcurе bοdy]
+TYPOGRAPHIC[‘single’ “double” en–dash em—dash ell…]
+ACCENTED-NFC[café naïve Dvořák Émile]
+ACCENTED-NFD[café naïve Dvořák Émile]
+NOBREAK-HYPHEN[‑] FIGDASH[‒] MINUS[−]
+LINESEP-NEXT-LINE_ends_here

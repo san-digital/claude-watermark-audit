@@ -1,0 +1,1637 @@
+{
+  "generator": "scripts/analyse_corpus.py",
+  "scope": "Character-level evidence for H1 (hidden Unicode) and H2 (presentation layer). Distributional statistics are Subagent C's independent work and are not duplicated here.",
+  "groups": {
+    "model:fable5": {
+      "files": 30,
+      "total_chars": 110262,
+      "total_bytes": 110370,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "bidi": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "typographic": {
+          "count": 12,
+          "per_1k_chars": 0.108832,
+          "wilson_upper_per_1k": 0.190236
+        },
+        "homoglyph_letter": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.034839
+        },
+        "other_nonascii": {
+          "count": 84,
+          "per_1k_chars": 0.761822,
+          "wilson_upper_per_1k": 0.942995
+        }
+      },
+      "codepoints": {
+        "other_nonascii": {
+          "U+00E9": 20,
+          "U+00E1": 15,
+          "U+00F3": 11,
+          "U+00E8": 4,
+          "U+00ED": 4,
+          "U+00E0": 4,
+          "U+0159": 4,
+          "U+00E7": 3,
+          "U+00E2": 2,
+          "U+00FB": 2,
+          "U+011B": 2,
+          "U+0161": 2,
+          "U+00EF": 1,
+          "U+00EA": 1,
+          "U+00F1": 1,
+          "U+00E3": 1,
+          "U+010D": 1,
+          "U+016F": 1,
+          "U+0165": 1,
+          "U+00F6": 1,
+          "U+00E4": 1,
+          "U+017E": 1,
+          "U+00EE": 1
+        },
+        "typographic": {
+          "U+2014": 12
+        }
+      },
+      "per_file": {
+        "L01": {
+          "chars": 7386,
+          "bytes": 7386,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L02": {
+          "chars": 6162,
+          "bytes": 6162,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L03": {
+          "chars": 7081,
+          "bytes": 7081,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L04": {
+          "chars": 7344,
+          "bytes": 7344,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L05": {
+          "chars": 10969,
+          "bytes": 10969,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L06": {
+          "chars": 11032,
+          "bytes": 11032,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L07": {
+          "chars": 6829,
+          "bytes": 6829,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L08": {
+          "chars": 6164,
+          "bytes": 6215,
+          "flagged": {
+            "other_nonascii": 51
+          },
+          "pure_ascii": false
+        },
+        "L09": {
+          "chars": 6499,
+          "bytes": 6519,
+          "flagged": {
+            "typographic": 10
+          },
+          "pure_ascii": false
+        },
+        "L10": {
+          "chars": 7700,
+          "bytes": 7700,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M01": {
+          "chars": 2781,
+          "bytes": 2781,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M02": {
+          "chars": 2626,
+          "bytes": 2626,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M03": {
+          "chars": 2733,
+          "bytes": 2733,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M04": {
+          "chars": 2471,
+          "bytes": 2471,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M05": {
+          "chars": 2887,
+          "bytes": 2887,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M06": {
+          "chars": 2843,
+          "bytes": 2843,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M07": {
+          "chars": 2980,
+          "bytes": 2980,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M08": {
+          "chars": 3040,
+          "bytes": 3066,
+          "flagged": {
+            "other_nonascii": 26
+          },
+          "pure_ascii": false
+        },
+        "M09": {
+          "chars": 2655,
+          "bytes": 2659,
+          "flagged": {
+            "typographic": 2
+          },
+          "pure_ascii": false
+        },
+        "M10": {
+          "chars": 2849,
+          "bytes": 2849,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S01": {
+          "chars": 660,
+          "bytes": 660,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S02": {
+          "chars": 513,
+          "bytes": 513,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S03": {
+          "chars": 666,
+          "bytes": 666,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S04": {
+          "chars": 413,
+          "bytes": 413,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S05": {
+          "chars": 558,
+          "bytes": 558,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S06": {
+          "chars": 280,
+          "bytes": 280,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S07": {
+          "chars": 572,
+          "bytes": 572,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S08": {
+          "chars": 521,
+          "bytes": 528,
+          "flagged": {
+            "other_nonascii": 7
+          },
+          "pure_ascii": false
+        },
+        "S09": {
+          "chars": 382,
+          "bytes": 382,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S10": {
+          "chars": 666,
+          "bytes": 666,
+          "flagged": {},
+          "pure_ascii": true
+        }
+      }
+    },
+    "model:haiku45": {
+      "files": 30,
+      "total_chars": 113705,
+      "total_bytes": 113763,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "bidi": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "typographic": {
+          "count": 7,
+          "per_1k_chars": 0.061563,
+          "wilson_upper_per_1k": 0.127084
+        },
+        "homoglyph_letter": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.033785
+        },
+        "other_nonascii": {
+          "count": 38,
+          "per_1k_chars": 0.334198,
+          "wilson_upper_per_1k": 0.458652
+        }
+      },
+      "codepoints": {
+        "other_nonascii": {
+          "U+00E9": 9,
+          "U+2713": 6,
+          "U+00E7": 5,
+          "U+00E1": 4,
+          "U+00F3": 3,
+          "U+00ED": 2,
+          "U+0159": 2,
+          "U+0161": 2,
+          "U+010D": 2,
+          "U+00E0": 1,
+          "U+016F": 1,
+          "U+00E2": 1
+        },
+        "typographic": {
+          "U+2014": 7
+        }
+      },
+      "per_file": {
+        "L01": {
+          "chars": 8377,
+          "bytes": 8377,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L02": {
+          "chars": 7373,
+          "bytes": 7374,
+          "flagged": {
+            "other_nonascii": 1
+          },
+          "pure_ascii": false
+        },
+        "L03": {
+          "chars": 8442,
+          "bytes": 8442,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L04": {
+          "chars": 6582,
+          "bytes": 6582,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L05": {
+          "chars": 9288,
+          "bytes": 9300,
+          "flagged": {
+            "other_nonascii": 6
+          },
+          "pure_ascii": false
+        },
+        "L06": {
+          "chars": 7887,
+          "bytes": 7887,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L07": {
+          "chars": 8435,
+          "bytes": 8435,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L08": {
+          "chars": 9080,
+          "bytes": 9096,
+          "flagged": {
+            "other_nonascii": 16
+          },
+          "pure_ascii": false
+        },
+        "L09": {
+          "chars": 8006,
+          "bytes": 8010,
+          "flagged": {
+            "typographic": 2
+          },
+          "pure_ascii": false
+        },
+        "L10": {
+          "chars": 8377,
+          "bytes": 8377,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M01": {
+          "chars": 2274,
+          "bytes": 2274,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M02": {
+          "chars": 2566,
+          "bytes": 2566,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M03": {
+          "chars": 2680,
+          "bytes": 2680,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M04": {
+          "chars": 2553,
+          "bytes": 2553,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M05": {
+          "chars": 2341,
+          "bytes": 2341,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M06": {
+          "chars": 2986,
+          "bytes": 2986,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M07": {
+          "chars": 3166,
+          "bytes": 3166,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M08": {
+          "chars": 3205,
+          "bytes": 3216,
+          "flagged": {
+            "other_nonascii": 11
+          },
+          "pure_ascii": false
+        },
+        "M09": {
+          "chars": 2397,
+          "bytes": 2407,
+          "flagged": {
+            "typographic": 5
+          },
+          "pure_ascii": false
+        },
+        "M10": {
+          "chars": 2274,
+          "bytes": 2274,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S01": {
+          "chars": 644,
+          "bytes": 644,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S02": {
+          "chars": 500,
+          "bytes": 500,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S03": {
+          "chars": 625,
+          "bytes": 625,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S04": {
+          "chars": 532,
+          "bytes": 532,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S05": {
+          "chars": 637,
+          "bytes": 637,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S06": {
+          "chars": 186,
+          "bytes": 186,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S07": {
+          "chars": 559,
+          "bytes": 559,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S08": {
+          "chars": 584,
+          "bytes": 587,
+          "flagged": {
+            "other_nonascii": 3
+          },
+          "pure_ascii": false
+        },
+        "S09": {
+          "chars": 505,
+          "bytes": 506,
+          "flagged": {
+            "other_nonascii": 1
+          },
+          "pure_ascii": false
+        },
+        "S10": {
+          "chars": 644,
+          "bytes": 644,
+          "flagged": {},
+          "pure_ascii": true
+        }
+      }
+    },
+    "model:opus5": {
+      "files": 30,
+      "total_chars": 125943,
+      "total_bytes": 126068,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "bidi": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "typographic": {
+          "count": 15,
+          "per_1k_chars": 0.119101,
+          "wilson_upper_per_1k": 0.196517
+        },
+        "homoglyph_letter": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.030502
+        },
+        "other_nonascii": {
+          "count": 95,
+          "per_1k_chars": 0.754309,
+          "wilson_upper_per_1k": 0.921926
+        }
+      },
+      "codepoints": {
+        "other_nonascii": {
+          "U+00E9": 26,
+          "U+00F3": 9,
+          "U+00E1": 7,
+          "U+00ED": 6,
+          "U+00E0": 6,
+          "U+00E8": 4,
+          "U+00E7": 4,
+          "U+00E3": 4,
+          "U+00E2": 3,
+          "U+00F1": 3,
+          "U+00E4": 3,
+          "U+00F6": 2,
+          "U+00EA": 2,
+          "U+00FB": 2,
+          "U+0153": 2,
+          "U+00F4": 2,
+          "U+0159": 2,
+          "U+00EF": 1,
+          "U+00C9": 1,
+          "U+00F2": 1,
+          "U+00DF": 1,
+          "U+0161": 1,
+          "U+010D": 1,
+          "U+00EB": 1,
+          "U+00EE": 1
+        },
+        "typographic": {
+          "U+2014": 15
+        }
+      },
+      "per_file": {
+        "L01": {
+          "chars": 10212,
+          "bytes": 10213,
+          "flagged": {
+            "other_nonascii": 1
+          },
+          "pure_ascii": false
+        },
+        "L02": {
+          "chars": 6368,
+          "bytes": 6369,
+          "flagged": {
+            "other_nonascii": 1
+          },
+          "pure_ascii": false
+        },
+        "L03": {
+          "chars": 9934,
+          "bytes": 9934,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L04": {
+          "chars": 8366,
+          "bytes": 8367,
+          "flagged": {
+            "other_nonascii": 1
+          },
+          "pure_ascii": false
+        },
+        "L05": {
+          "chars": 11215,
+          "bytes": 11215,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L06": {
+          "chars": 12809,
+          "bytes": 12809,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L07": {
+          "chars": 8600,
+          "bytes": 8600,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L08": {
+          "chars": 7799,
+          "bytes": 7865,
+          "flagged": {
+            "other_nonascii": 66
+          },
+          "pure_ascii": false
+        },
+        "L09": {
+          "chars": 7111,
+          "bytes": 7135,
+          "flagged": {
+            "typographic": 12
+          },
+          "pure_ascii": false
+        },
+        "L10": {
+          "chars": 9639,
+          "bytes": 9639,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M01": {
+          "chars": 2888,
+          "bytes": 2888,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M02": {
+          "chars": 2376,
+          "bytes": 2376,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M03": {
+          "chars": 2733,
+          "bytes": 2733,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M04": {
+          "chars": 2664,
+          "bytes": 2664,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M05": {
+          "chars": 3056,
+          "bytes": 3056,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M06": {
+          "chars": 3486,
+          "bytes": 3486,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M07": {
+          "chars": 2757,
+          "bytes": 2757,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M08": {
+          "chars": 2820,
+          "bytes": 2837,
+          "flagged": {
+            "other_nonascii": 17
+          },
+          "pure_ascii": false
+        },
+        "M09": {
+          "chars": 2515,
+          "bytes": 2519,
+          "flagged": {
+            "typographic": 2
+          },
+          "pure_ascii": false
+        },
+        "M10": {
+          "chars": 3029,
+          "bytes": 3029,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S01": {
+          "chars": 654,
+          "bytes": 654,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S02": {
+          "chars": 480,
+          "bytes": 482,
+          "flagged": {
+            "typographic": 1
+          },
+          "pure_ascii": false
+        },
+        "S03": {
+          "chars": 618,
+          "bytes": 618,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S04": {
+          "chars": 517,
+          "bytes": 517,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S05": {
+          "chars": 590,
+          "bytes": 590,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S06": {
+          "chars": 441,
+          "bytes": 441,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S07": {
+          "chars": 553,
+          "bytes": 553,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S08": {
+          "chars": 558,
+          "bytes": 567,
+          "flagged": {
+            "other_nonascii": 9
+          },
+          "pure_ascii": false
+        },
+        "S09": {
+          "chars": 528,
+          "bytes": 528,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S10": {
+          "chars": 627,
+          "bytes": 627,
+          "flagged": {},
+          "pure_ascii": true
+        }
+      }
+    },
+    "model:sonnet5": {
+      "files": 30,
+      "total_chars": 107135,
+      "total_bytes": 107180,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "bidi": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "typographic": {
+          "count": 3,
+          "per_1k_chars": 0.028002,
+          "wilson_upper_per_1k": 0.082335
+        },
+        "homoglyph_letter": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.035856
+        },
+        "other_nonascii": {
+          "count": 39,
+          "per_1k_chars": 0.364027,
+          "wilson_upper_per_1k": 0.497565
+        }
+      },
+      "codepoints": {
+        "other_nonascii": {
+          "U+00E9": 12,
+          "U+00E1": 5,
+          "U+00ED": 3,
+          "U+00E8": 2,
+          "U+00E2": 2,
+          "U+00F1": 2,
+          "U+00E7": 2,
+          "U+0159": 2,
+          "U+00FC": 1,
+          "U+00FB": 1,
+          "U+00F3": 1,
+          "U+00E0": 1,
+          "U+00F6": 1,
+          "U+0161": 1,
+          "U+010D": 1,
+          "U+016F": 1,
+          "U+00EE": 1
+        },
+        "typographic": {
+          "U+2014": 3
+        }
+      },
+      "per_file": {
+        "L01": {
+          "chars": 7296,
+          "bytes": 7296,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L02": {
+          "chars": 6689,
+          "bytes": 6689,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L03": {
+          "chars": 8496,
+          "bytes": 8496,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L04": {
+          "chars": 8992,
+          "bytes": 8992,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L05": {
+          "chars": 12137,
+          "bytes": 12137,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L06": {
+          "chars": 8319,
+          "bytes": 8319,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L07": {
+          "chars": 6375,
+          "bytes": 6375,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "L08": {
+          "chars": 6079,
+          "bytes": 6098,
+          "flagged": {
+            "other_nonascii": 19
+          },
+          "pure_ascii": false
+        },
+        "L09": {
+          "chars": 6272,
+          "bytes": 6276,
+          "flagged": {
+            "typographic": 2
+          },
+          "pure_ascii": false
+        },
+        "L10": {
+          "chars": 6719,
+          "bytes": 6719,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M01": {
+          "chars": 2259,
+          "bytes": 2259,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M02": {
+          "chars": 2264,
+          "bytes": 2266,
+          "flagged": {
+            "other_nonascii": 2
+          },
+          "pure_ascii": false
+        },
+        "M03": {
+          "chars": 2370,
+          "bytes": 2370,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M04": {
+          "chars": 2116,
+          "bytes": 2116,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M05": {
+          "chars": 2840,
+          "bytes": 2840,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M06": {
+          "chars": 2296,
+          "bytes": 2296,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M07": {
+          "chars": 2665,
+          "bytes": 2665,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "M08": {
+          "chars": 2604,
+          "bytes": 2615,
+          "flagged": {
+            "other_nonascii": 11
+          },
+          "pure_ascii": false
+        },
+        "M09": {
+          "chars": 2437,
+          "bytes": 2439,
+          "flagged": {
+            "typographic": 1
+          },
+          "pure_ascii": false
+        },
+        "M10": {
+          "chars": 2436,
+          "bytes": 2436,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S01": {
+          "chars": 668,
+          "bytes": 668,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S02": {
+          "chars": 553,
+          "bytes": 553,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S03": {
+          "chars": 611,
+          "bytes": 611,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S04": {
+          "chars": 379,
+          "bytes": 379,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S05": {
+          "chars": 657,
+          "bytes": 657,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S06": {
+          "chars": 211,
+          "bytes": 211,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S07": {
+          "chars": 646,
+          "bytes": 646,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S08": {
+          "chars": 585,
+          "bytes": 592,
+          "flagged": {
+            "other_nonascii": 7
+          },
+          "pure_ascii": false
+        },
+        "S09": {
+          "chars": 518,
+          "bytes": 518,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "S10": {
+          "chars": 646,
+          "bytes": 646,
+          "flagged": {},
+          "pure_ascii": true
+        }
+      }
+    },
+    "control:human_gutenberg": {
+      "files": 5,
+      "total_chars": 3059329,
+      "total_bytes": 3106202,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "bidi": {
+          "count": 2,
+          "per_1k_chars": 0.000654,
+          "wilson_upper_per_1k": 0.002384
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "typographic": {
+          "count": 23279,
+          "per_1k_chars": 7.609185,
+          "wilson_upper_per_1k": 7.707181
+        },
+        "homoglyph_letter": {
+          "count": 1,
+          "per_1k_chars": 0.000327,
+          "wilson_upper_per_1k": 0.001852
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.001256
+        },
+        "other_nonascii": {
+          "count": 205,
+          "per_1k_chars": 0.067008,
+          "wilson_upper_per_1k": 0.07683
+        }
+      },
+      "codepoints": {
+        "typographic": {
+          "U+2019": 6868,
+          "U+201C": 6718,
+          "U+201D": 6352,
+          "U+2014": 3055,
+          "U+2018": 286
+        },
+        "other_nonascii": {
+          "U+2122": 85,
+          "U+00E6": 44,
+          "U+2022": 20,
+          "U+00EA": 16,
+          "U+00E9": 9,
+          "U+0153": 5,
+          "U+00E0": 4,
+          "U+00A3": 4,
+          "U+00E8": 4,
+          "U+00E2": 2,
+          "U+00B7": 2,
+          "U+00F4": 2,
+          "U+00F9": 1,
+          "U+05D7": 1,
+          "U+05D5": 1,
+          "U+03F0": 1,
+          "U+03B7": 1,
+          "U+03C4": 1,
+          "U+03C2": 1,
+          "U+0152": 1
+        },
+        "bidi": {
+          "U+200F": 1,
+          "U+200E": 1
+        },
+        "homoglyph_letter": {
+          "U+03BF": 1
+        }
+      },
+      "per_file": {
+        "pg11_alices_adventures": {
+          "chars": 167712,
+          "bytes": 174311,
+          "flagged": {
+            "typographic": 3278,
+            "other_nonascii": 22
+          },
+          "pure_ascii": false
+        },
+        "pg1342_pride_and_prejudice": {
+          "chars": 763082,
+          "bytes": 772386,
+          "flagged": {
+            "typographic": 4622,
+            "other_nonascii": 39
+          },
+          "pure_ascii": false
+        },
+        "pg2701_moby_dick": {
+          "chars": 1260593,
+          "bytes": 1276263,
+          "flagged": {
+            "typographic": 7788,
+            "bidi": 2,
+            "other_nonascii": 68,
+            "homoglyph_letter": 1
+          },
+          "pure_ascii": false
+        },
+        "pg74_tom_sawyer": {
+          "chars": 421360,
+          "bytes": 434357,
+          "flagged": {
+            "typographic": 6476,
+            "other_nonascii": 24
+          },
+          "pure_ascii": false
+        },
+        "pg84_frankenstein": {
+          "chars": 446582,
+          "bytes": 448885,
+          "flagged": {
+            "typographic": 1115,
+            "other_nonascii": 52
+          },
+          "pure_ascii": false
+        }
+      }
+    },
+    "control:synthetic_tools": {
+      "files": 5,
+      "total_chars": 843511,
+      "total_bytes": 843511,
+      "rates": {
+        "invisible": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "bidi": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "tag": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "variation_selector": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "nonascii_space": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "typographic": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "homoglyph_letter": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "combining": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "unexpected_control": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        },
+        "other_nonascii": {
+          "count": 0,
+          "per_1k_chars": 0.0,
+          "wilson_upper_per_1k": 0.004554
+        }
+      },
+      "codepoints": {},
+      "per_file": {
+        "compiler_assembly_output": {
+          "chars": 2532,
+          "bytes": 2532,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "handwritten_source": {
+          "chars": 314,
+          "bytes": 314,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "python_disassembly": {
+          "chars": 765434,
+          "bytes": 765434,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "random_printable_ascii": {
+          "chars": 28828,
+          "bytes": 28828,
+          "flagged": {},
+          "pure_ascii": true
+        },
+        "random_pseudo_prose_ascii": {
+          "chars": 46403,
+          "bytes": 46403,
+          "flagged": {},
+          "pure_ascii": true
+        }
+      }
+    }
+  },
+  "ascii_compliance": {
+    "fable5": {
+      "S07": {
+        "chars": 572,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "M07": {
+        "chars": 2980,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "L07": {
+        "chars": 6829,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      }
+    },
+    "haiku45": {
+      "S07": {
+        "chars": 559,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "M07": {
+        "chars": 3166,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "L07": {
+        "chars": 8435,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      }
+    },
+    "opus5": {
+      "S07": {
+        "chars": 553,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "M07": {
+        "chars": 2757,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "L07": {
+        "chars": 8600,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      }
+    },
+    "sonnet5": {
+      "S07": {
+        "chars": 646,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "M07": {
+        "chars": 2665,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      },
+      "L07": {
+        "chars": 6375,
+        "compliant": true,
+        "violations": 0,
+        "violating_codepoints": {}
+      }
+    }
+  },
+  "genre_controlled_typography": {
+    "note": "Gutenberg transcriptions are dialogue-dense fiction; the model corpus is mixed. S09/M09/L09 are the dialogue-matched model subset. Even this is only a partial genre control: editorial transcription conventions differ from generated text regardless of genre.",
+    "human_all": {
+      "chars": 3059329,
+      "typographic": 23279,
+      "per_1k_chars": 7.6092
+    },
+    "fable5": {
+      "all": {
+        "files": 30,
+        "chars": 110262,
+        "typographic": 12,
+        "per_1k_chars": 0.1088
+      },
+      "dialogue_only": {
+        "files": 3,
+        "chars": 9536,
+        "typographic": 12,
+        "per_1k_chars": 1.2584
+      }
+    },
+    "haiku45": {
+      "all": {
+        "files": 30,
+        "chars": 113705,
+        "typographic": 7,
+        "per_1k_chars": 0.0616
+      },
+      "dialogue_only": {
+        "files": 3,
+        "chars": 10908,
+        "typographic": 7,
+        "per_1k_chars": 0.6417
+      }
+    },
+    "opus5": {
+      "all": {
+        "files": 30,
+        "chars": 125943,
+        "typographic": 15,
+        "per_1k_chars": 0.1191
+      },
+      "dialogue_only": {
+        "files": 3,
+        "chars": 10154,
+        "typographic": 14,
+        "per_1k_chars": 1.3788
+      }
+    },
+    "sonnet5": {
+      "all": {
+        "files": 30,
+        "chars": 107135,
+        "typographic": 3,
+        "per_1k_chars": 0.028
+      },
+      "dialogue_only": {
+        "files": 3,
+        "chars": 9227,
+        "typographic": 3,
+        "per_1k_chars": 0.3251
+      }
+    }
+  },
+  "repeat_stability": {
+    "fable5": {
+      "S01/S10": {
+        "identical_text": false,
+        "chars": [
+          660,
+          666
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "M01/M10": {
+        "identical_text": false,
+        "chars": [
+          2781,
+          2849
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "L01/L10": {
+        "identical_text": false,
+        "chars": [
+          7386,
+          7700
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      }
+    },
+    "haiku45": {
+      "S01/S10": {
+        "identical_text": true,
+        "chars": [
+          644,
+          644
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "M01/M10": {
+        "identical_text": true,
+        "chars": [
+          2274,
+          2274
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "L01/L10": {
+        "identical_text": true,
+        "chars": [
+          8377,
+          8377
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      }
+    },
+    "opus5": {
+      "S01/S10": {
+        "identical_text": false,
+        "chars": [
+          654,
+          627
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "M01/M10": {
+        "identical_text": false,
+        "chars": [
+          2888,
+          3029
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "L01/L10": {
+        "identical_text": false,
+        "chars": [
+          10212,
+          9639
+        ],
+        "flagged_a": {
+          "other_nonascii": 1
+        },
+        "flagged_b": {}
+      }
+    },
+    "sonnet5": {
+      "S01/S10": {
+        "identical_text": false,
+        "chars": [
+          668,
+          646
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "M01/M10": {
+        "identical_text": false,
+        "chars": [
+          2259,
+          2436
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      },
+      "L01/L10": {
+        "identical_text": false,
+        "chars": [
+          7296,
+          6719
+        ],
+        "flagged_a": {},
+        "flagged_b": {}
+      }
+    }
+  },
+  "pooled_model_hidden_character_test": {
+    "categories": [
+      "invisible",
+      "bidi",
+      "tag",
+      "variation_selector",
+      "nonascii_space"
+    ],
+    "total_model_chars": 457045,
+    "total_hidden_chars_found": 0,
+    "observed_rate_per_1k": 0.0,
+    "wilson_upper_per_1k_chars": 0.00840523,
+    "interpretation": "A zero count is not proof of absence. The Wilson upper bound is the highest per-character rate of hidden characters still consistent with this corpus at ~95% confidence. It bounds ONLY the hidden-character hypothesis (H1); a watermark carried in token selection would produce zero hidden characters and is entirely untouched by this test."
+  }
+}

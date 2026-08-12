@@ -1,0 +1,60 @@
+{
+  "probe": "Collection-pipeline positive control",
+  "generated_utc": "2026-08-12T03:05:10Z",
+  "question": "Can the model -> tool-call transport -> Write tool -> filesystem path, which is how the entire corpus was collected, actually carry hidden Unicode? Without this, a finding of zero hidden characters in the corpus is uninterpretable: it could simply mean the pipeline strips them.",
+  "emitting_model": "claude-fable-5 (orchestrator), emitting the characters as literal output in a Write tool call",
+  "artefacts": {
+    "positive_control": {
+      "path": "evidence/routes/pipeline_positive_control__write_tool.txt",
+      "sha256": "59adfcaab24625d91815acea2950e9f534009ab9cdbfbaa32071f28c25c21639"
+    },
+    "space_probe": {
+      "path": "evidence/routes/pipeline_space_probe__write_tool.txt",
+      "sha256": "e596d76d9cd82d52a23b9c01800c9b7187d661ecb54291a92c0492b4b8640d23"
+    }
+  },
+  "results": {
+    "invisible_zero_width": {
+      "survived_count": 6,
+      "survived": true
+    },
+    "bidi_controls": {
+      "survived_count": 5,
+      "survived": true
+    },
+    "tag_characters": {
+      "survived_count": 4,
+      "survived": true
+    },
+    "variation_selectors": {
+      "survived_count": 2,
+      "survived": true
+    },
+    "combining_marks": {
+      "survived_count": 3,
+      "survived": true
+    },
+    "homoglyph_letters": {
+      "survived_count": 6,
+      "survived": true
+    },
+    "nonascii_spaces": {
+      "survived_count": 0,
+      "survived": false
+    }
+  },
+  "tag_payload_decoded": "HI",
+  "findings": [
+    {
+      "finding": "Zero-width, bidi, tag, variation-selector, combining and Cyrillic/Greek homoglyph characters ALL survive the collection path intact, byte for byte. The Unicode tag payload still decodes to its hidden ASCII message.",
+      "consequence": "A hidden-Unicode watermark of these kinds, had one been present in model output, would have reached disk and been detected. The corpus-wide zero finding for these categories is therefore a real negative, not an artefact.",
+      "classification": "Confirmed by reproduced experiment"
+    },
+    {
+      "finding": "Non-ASCII space variants (U+00A0, U+202F, U+2009, U+2003, U+2002, U+3000) do NOT survive. 0 of 6 arrived; each became U+0020. Reproduced twice, in two independently written probes, including one where the space variant had no adjacent ASCII space.",
+      "consequence": "This is a DETECTOR BLIND SPOT. The corpus cannot speak to marking that uses space variants alone. Note the asymmetry with the categories above.",
+      "caveat": "Cannot be attributed here between (a) the model not emitting these code points and (b) the harness Write path normalising them. Independent evidence narrows it: scripts/route_test.py shows Python-authored NBSP/NNBSP survive the filesystem, clipboard and JSON-transport routes unchanged, so the loss occurs specifically at the model-emission-to-Write-tool link, not in storage or transport.",
+      "classification": "Observed anomaly, not established as watermark"
+    }
+  ]
+}

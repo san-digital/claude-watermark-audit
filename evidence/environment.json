@@ -1,0 +1,343 @@
+{
+  "audit": "claude-watermark-audit",
+  "phase": "Phase 1 - environment record",
+  "generated_utc": "2026-08-12T03:35:41Z",
+  "generator": "scripts/record_environment.py",
+  "operating_system": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "platform": "macOS-26.6-arm64-arm-64bit",
+    "mac_product_name": "macOS",
+    "mac_product_version": "26.6",
+    "mac_build_version": "25G72"
+  },
+  "locale_and_encoding": {
+    "LANG": "",
+    "LC_ALL": "",
+    "LC_CTYPE": "C.UTF-8",
+    "python_encodings": {
+      "sys.getdefaultencoding": "utf-8",
+      "sys.getfilesystemencoding": "utf-8",
+      "locale.getpreferredencoding": "utf-8",
+      "sys.stdout.encoding": "utf-8"
+    },
+    "unicodedata_unidata_version": "14.0.0",
+    "note": "unicodedata is Unicode 14.0.0 (bundled with CPython 3.11). Code points assigned after Unicode 14 will scan as unnamed. This is a stated limitation of the scanner, not evidence about any model."
+  },
+  "claude_product": {
+    "surface": "Claude Code (agent harness, non-interactive session)",
+    "claude_code_version": "2.1.220 (Claude Code)",
+    "claude_agent_sdk_version": "0.3.221",
+    "entrypoint": "claude-desktop",
+    "anthropic_base_url_host": "api.anthropic.com",
+    "base_url_note": "ANTHROPIC_BASE_URL resolves to the first-party Anthropic API host. No third-party gateway, proxy or cloud reseller is in the path."
+  },
+  "models": {
+    "orchestrator": {
+      "assigned": "claude-fable-5",
+      "alias_used": "n/a (session model)",
+      "verification": "reported by the harness system prompt; not independently verifiable from inside the process"
+    },
+    "subagents": {
+      "selection_mechanism": "Agent tool `model` parameter (alias -> harness resolution)",
+      "aliases_available": [
+        "opus",
+        "sonnet",
+        "haiku",
+        "fable"
+      ],
+      "assignments": {
+        "A_official_sources": "opus",
+        "B_unicode_forensics": "fable",
+        "C_statistical": "sonnet",
+        "D_sceptical_review": "haiku",
+        "generator_opus5": "opus",
+        "generator_sonnet5": "sonnet",
+        "generator_haiku45": "haiku",
+        "generator_fable5": "fable"
+      },
+      "expected_resolution": {
+        "opus": "claude-opus-5",
+        "sonnet": "claude-sonnet-5",
+        "haiku": "claude-haiku-4-5-20251001",
+        "fable": "claude-fable-5"
+      },
+      "verification_caveat": "Alias-to-exact-ID resolution is asserted by the harness environment, and each subagent additionally self-reports its runtime model. Self-reports are WEAKLY VERIFIED: a model's belief about its own identity is not an independent measurement. No response header or API metadata exposing the served model ID is reachable from this environment."
+    }
+  },
+  "api_access": {
+    "direct_http_api": "UNAVAILABLE",
+    "official_sdk": "UNAVAILABLE",
+    "detail": "No ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN or CLAUDE_CODE_OAUTH_TOKEN is present in the environment. A nested `claude -p` invocation fails with 'Failed to authenticate: OAuth session expired and could not be refreshed'. Neither the Python `anthropic` package nor `@anthropic-ai/sdk` is installed, and no package installation was attempted. Extracting the host application's stored credentials was deliberately NOT attempted.",
+    "credential_presence_only": {
+      "ANTHROPIC_API_KEY": false,
+      "ANTHROPIC_AUTH_TOKEN": false,
+      "CLAUDE_CODE_OAUTH_TOKEN": false
+    }
+  },
+  "shell_terminal_editor": {
+    "shell": "/bin/zsh",
+    "shell_version": "zsh 5.9 (arm64-apple-darwin25.0)",
+    "bash_version": "GNU bash, version 5.3.3(1)-release (aarch64-apple-darwin25.0.0)",
+    "TERM": "unset",
+    "stdout_is_a_tty": false,
+    "terminal_note": "Commands run under an agent harness, not an interactive terminal. Terminal rendering was tested explicitly with a stdlib pseudo-terminal (scripts/route_test.py route R4).",
+    "editor": "none; all files written by the agent Write tool or by Python",
+    "python": "3.11.8",
+    "git": "git version 2.49.0",
+    "node": "v25.5.0"
+  },
+  "clipboard_route": {
+    "mechanism": "macOS NSPasteboard via /usr/bin/pbcopy and /usr/bin/pbpaste",
+    "tested": true,
+    "limitation": "This is the operating system clipboard only. The claude.ai web 'Copy' button and any JavaScript clipboard handler in Claude's web or desktop interface were NOT tested and are not reachable from this environment."
+  },
+  "cloud_provider": {
+    "provider": "none",
+    "detail": "Direct first-party Anthropic API host. Not Bedrock, not Vertex AI, not Azure/Foundry."
+  },
+  "region": {
+    "system_timezone": "Europe/London",
+    "country_broad": "United Kingdom (GB)",
+    "method": "derived from /etc/localtime symlink; no IP geolocation performed",
+    "note": "Anthropic API serving region is NOT observable from this environment."
+  },
+  "unavailable_test_surfaces": [
+    {
+      "surface": "Raw Anthropic HTTP API response body",
+      "reason": "No usable API credential in this environment; credential extraction not attempted.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Official Anthropic SDK (Python or TypeScript)",
+      "reason": "Neither SDK installed; no package installation performed.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "claude.ai web interface rendered output",
+      "reason": "Non-interactive session; no authenticated browser session available.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "claude.ai / desktop app 'Copy' button handler",
+      "reason": "Requires the authenticated web or desktop interface.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Manual human selection-and-copy from the rendered interface",
+      "reason": "Requires a human at an interactive GUI session.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Claude on Amazon Bedrock",
+      "reason": "No pre-existing access; obtaining paid services for this test was out of scope.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Claude on Google Cloud Vertex AI",
+      "reason": "No pre-existing access; obtaining paid services for this test was out of scope.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Claude on Microsoft Foundry",
+      "reason": "No pre-existing access; obtaining paid services for this test was out of scope.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Cowork",
+      "reason": "Not available in this environment.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Temperature / top_p / seed control over generation",
+      "reason": "The Agent tool exposes no sampling parameters; harness defaults apply and are not observable.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "surface": "Token-level logprobs",
+      "reason": "Not exposed by the Anthropic API or the harness. A statistical-watermark test at token level is therefore impossible here.",
+      "classification": "Test not possible in this environment"
+    }
+  ],
+  "available_test_surfaces": [
+    "Claude Code subagent (Agent tool) -> model text -> Write tool -> file on disk",
+    "Claude Code orchestrator assistant turn -> Write tool -> file on disk",
+    "Local file write (Python binary and text mode)",
+    "Shell redirection",
+    "macOS system clipboard round-trip (pbcopy/pbpaste)",
+    "Pseudo-terminal round-trip (stdlib pty)",
+    "JSON tool-transport round-trip (ensure_ascii both settings)"
+  ],
+  "test_script_hashes": {
+    "scripts/analyse_corpus.py": {
+      "sha256": "14428d0978514e74964c30d98aefa539030c06f2ffaa2422024f3ec462d2ffa7",
+      "bytes": 14322
+    },
+    "scripts/build_manifest.py": {
+      "sha256": "bb147f4a78d92cd989bba0fa2f42ea0f4c978d995c2b4d866ab3ea9f1b08e614",
+      "bytes": 8454
+    },
+    "scripts/compare_bytes.py": {
+      "sha256": "6cd098ac0cacfe9aebc9fb08a25c87f9eb4dac4de2707ebdb6f61236bf147c27",
+      "bytes": 11248
+    },
+    "scripts/make_controls.py": {
+      "sha256": "3c045c4da973f317897f04d10ce26f07ff5f3de1da2c7de107330c10d3b2ad31",
+      "bytes": 11323
+    },
+    "scripts/record_environment.py": {
+      "sha256": "e9cbbcd5bd361430f4564310ce84096768e8c8f08f5fb30eb2e1998b8a914b69",
+      "bytes": 12902
+    },
+    "scripts/route_test.py": {
+      "sha256": "bd56b751e6d0470c7c97cf54ade44b3f14c0e8e11a44b6ddf195a6485dfa2359",
+      "bytes": 13335
+    },
+    "scripts/scan_unicode.py": {
+      "sha256": "38ab5e1c4d8c87bc2ea83adedf75f4b28d98a4cd3d9313f47a798b716ea442f3",
+      "bytes": 20517
+    },
+    "scripts/stat_common.py": {
+      "sha256": "7ce5f5337f8ae24dac3ac2f45491d5829a048ab088434cabf6fde5c7106f3c88",
+      "bytes": 16167
+    },
+    "scripts/stat_lexical_punct.py": {
+      "sha256": "784bbd3cb2b6a239aaa9c054c2ffcb3e82e9e9b5f826d30ae892a906b7291aa7",
+      "bytes": 19531
+    },
+    "scripts/stat_positional.py": {
+      "sha256": "9645653df0a3ee60d074f393f37ad2f34da86a76569383010aed84e03c66c2aa",
+      "bytes": 9986
+    },
+    "tests/TEST-OUTPUT.txt": {
+      "sha256": "cd2ea53379dadcd74826390b5e121b9b008215f18a1bdb49ee9dbab3acb96747",
+      "bytes": 3699
+    },
+    "tests/fixtures/cmp_base.txt": {
+      "sha256": "14d90a51f6d093cf307962443f30c709498b42192461bf7e1bc89aba4d48295d",
+      "bytes": 71
+    },
+    "tests/fixtures/cmp_crlf.txt": {
+      "sha256": "432aa2bf8bf1d22ee5051af444407a32a5f770cb3cafbf544f74a020b9492113",
+      "bytes": 73
+    },
+    "tests/fixtures/cmp_curly.txt": {
+      "sha256": "869c2204bb2a6248f7bb339ad4df9cf742a65efe464d78c00ef7d20cf2f8643f",
+      "bytes": 73
+    },
+    "tests/fixtures/cmp_identical.txt": {
+      "sha256": "14d90a51f6d093cf307962443f30c709498b42192461bf7e1bc89aba4d48295d",
+      "bytes": 71
+    },
+    "tests/fixtures/cmp_nfc_base.txt": {
+      "sha256": "4da62a0a6f2eadf05f8ed8f6e1e8796aa243bd3cb3cd69cabbaaabddbbbb9340",
+      "bytes": 17
+    },
+    "tests/fixtures/cmp_nfd.txt": {
+      "sha256": "34b62f9aa5ca9e152aac60c4bccb2416a433caf07ed3cd7ed76f96a80067a0df",
+      "bytes": 18
+    },
+    "tests/fixtures/cmp_zwsp.txt": {
+      "sha256": "23d07b57c5e949667d9b5ab9f45baf4010c192143d179b8da1e8f669ad686b8a",
+      "bytes": 74
+    },
+    "tests/fixtures/negative_accented_text.txt": {
+      "sha256": "3f14aef446094ece6659991cd2865f80d0ad6802492259ddfe08203ade3918ec",
+      "bytes": 108
+    },
+    "tests/fixtures/negative_control.txt": {
+      "sha256": "601297bfa26b01d20e206032bd66c965c3465301bff8854c694edc0ba52046f2",
+      "bytes": 149
+    },
+    "tests/fixtures/positive_bidi.txt": {
+      "sha256": "90db68910602a5712b96460849864e9c153eaa408005e70e52400eb401673f54",
+      "bytes": 120
+    },
+    "tests/fixtures/positive_combining.txt": {
+      "sha256": "beeeeaa9ac40c62b4b930f1c4eee531d197feb732bd9fceb615ab2be7843d5b6",
+      "bytes": 105
+    },
+    "tests/fixtures/positive_homoglyphs.txt": {
+      "sha256": "da4bf27029235823c8912d8fe31fce3b05f5a558034d9fd82237f7a551f376fb",
+      "bytes": 168
+    },
+    "tests/fixtures/positive_invisible_00AD_soft_hyphen.txt": {
+      "sha256": "1e616c32fc6192f400739ac841d55a9cc79c44ef1913a4b0a744080ffa6bae28",
+      "bytes": 52
+    },
+    "tests/fixtures/positive_invisible_061C_arabic_letter_mark.txt": {
+      "sha256": "f1ebc7a8bfad6b8330f29f00654e170f7900eed202c6a676e53ea62a4a03c608",
+      "bytes": 52
+    },
+    "tests/fixtures/positive_invisible_180E_mongolian_vowel_sep.txt": {
+      "sha256": "ee58d1bf622317d41766c4d1cc6463948ec2a8b403ee7dbb82b68eef90b46a17",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_200B_zwsp.txt": {
+      "sha256": "ca471b800cba166bcca309c834fb2f2b08b2693e4b3aae1c76b70a4acaaa8169",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_200C_zwnj.txt": {
+      "sha256": "9ad21aeaffb94dfb0dfef5c9202bf128e7d2f1a9f2f7a64862fd7df47a2ce4a8",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_200D_zwj.txt": {
+      "sha256": "6f8662255d6dc97ebc30654c90232c2a65932c69e759f10552bfdc2ff345aa14",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_2060_word_joiner.txt": {
+      "sha256": "114f3d6bec143ade2d6fff0114f8436d2abde0715d78971240fa1ccb96be8570",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_2061_function_application.txt": {
+      "sha256": "35f5881e699b15be1ec1beecb10f7e79b7d3523e836d89a4e5422bd9f41d8387",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_2062_invisible_times.txt": {
+      "sha256": "af540e61ccaeebd3e39150684194989c4e5d57757abac43f20d55e43268d1f26",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_2063_invisible_separator.txt": {
+      "sha256": "6d7778aac2085b18c7a9978fd5e5ae2a8e0050d7eb09e6ebf10099ffa4eb5219",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_2064_invisible_plus.txt": {
+      "sha256": "dd5b726f014570618a054d34cf427e90e301c9f365c0e16751e8e279a7f40948",
+      "bytes": 53
+    },
+    "tests/fixtures/positive_invisible_FEFF_bom.txt": {
+      "sha256": "767819a22759c3d36ea01b755513a0ddaf6897b05bcdffd4b95ebc0e1408c036",
+      "bytes": 56
+    },
+    "tests/fixtures/positive_mixed_normalization.txt": {
+      "sha256": "165fa991980ac245ba0d9dfb075de026d877c5553498e649d099124c651d267b",
+      "bytes": 49
+    },
+    "tests/fixtures/positive_position_cap.txt": {
+      "sha256": "c50bb2e0678513ee8e1557a5b7ab744073484d978d6f770fe016d94c2b25edf9",
+      "bytes": 251
+    },
+    "tests/fixtures/positive_tags.txt": {
+      "sha256": "db324aaba962c6412a3be1288fa0cd0845a31757f436f4f9b52e49c852e6a15f",
+      "bytes": 149
+    },
+    "tests/fixtures/positive_typographic.txt": {
+      "sha256": "b4237bae5c8746a4fd5a182fb946e983f396efa32a7064c336927c33e1f3c3b6",
+      "bytes": 124
+    },
+    "tests/fixtures/positive_variation_selectors.txt": {
+      "sha256": "1259c9f2ebb751361a3b2038b55aa2b84bf8fe19ebd5c4bf6eaffd568490c23a",
+      "bytes": 74
+    },
+    "tests/make_fixtures.py": {
+      "sha256": "ecbdc58a73cd4d5fc1b86e9664d09ed8255c9cbb73eac982f6f8e2e7f522d4de",
+      "bytes": 6570
+    },
+    "tests/test_scan_unicode.py": {
+      "sha256": "739936f5e0c075a01533cf02df2168c74275577b19113922598b0052e1f52d53",
+      "bytes": 16809
+    }
+  },
+  "privacy_note": "No secrets, tokens, cookies, account identifiers, organisation identifiers, session identifiers, IP addresses or absolute user paths are recorded in this file."
+}

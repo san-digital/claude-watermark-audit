@@ -1,0 +1,123 @@
+{
+  "generated_utc": "2026-08-12T02:52:35Z",
+  "generator": "scripts/make_controls.py",
+  "python": "3.11.8",
+  "note": "Human controls are raw bytes as served by Project Gutenberg. They are NOT normalized, decoded or rewritten. Gutenberg transcriptions are human-produced and may legitimately contain typographic punctuation; that is the point of the control.",
+  "controls": [
+    {
+      "control_id": "pg1342_pride_and_prejudice",
+      "class": "human_public_domain",
+      "path": "evidence/raw/controls/human/pg1342_pride_and_prejudice.txt",
+      "source": "https://www.gutenberg.org/cache/epub/1342/pg1342.txt",
+      "description": "Jane Austen, Pride and Prejudice (1813)",
+      "retrieved_utc": "2026-08-12T02:52:28Z",
+      "bytes": 772386,
+      "sha256": "74f2665d6e6925fc2c17dec644bec9e87df478a0f1836822125e8acbb3777806",
+      "http_status": 200
+    },
+    {
+      "control_id": "pg11_alices_adventures",
+      "class": "human_public_domain",
+      "path": "evidence/raw/controls/human/pg11_alices_adventures.txt",
+      "source": "https://www.gutenberg.org/cache/epub/11/pg11.txt",
+      "description": "Lewis Carroll, Alice's Adventures in Wonderland (1865)",
+      "retrieved_utc": "2026-08-12T02:52:29Z",
+      "bytes": 174311,
+      "sha256": "01b38ea4c710a84bc18d0bd41271a5a1a92b94e97b2812f4dece97d4a694725e",
+      "http_status": 200
+    },
+    {
+      "control_id": "pg2701_moby_dick",
+      "class": "human_public_domain",
+      "path": "evidence/raw/controls/human/pg2701_moby_dick.txt",
+      "source": "https://www.gutenberg.org/cache/epub/2701/pg2701.txt",
+      "description": "Herman Melville, Moby Dick (1851)",
+      "retrieved_utc": "2026-08-12T02:52:31Z",
+      "bytes": 1276263,
+      "sha256": "9a6844ac0703853720010787c7b6c70b0020f1ab1862dcd74452fa46474d1215",
+      "http_status": 200
+    },
+    {
+      "control_id": "pg74_tom_sawyer",
+      "class": "human_public_domain",
+      "path": "evidence/raw/controls/human/pg74_tom_sawyer.txt",
+      "source": "https://www.gutenberg.org/cache/epub/74/pg74.txt",
+      "description": "Mark Twain, The Adventures of Tom Sawyer (1876)",
+      "retrieved_utc": "2026-08-12T02:52:32Z",
+      "bytes": 434357,
+      "sha256": "74d77384b123a6360db9ab58463cff8b38df8525fbdc6000c81ee388e1f3cf10",
+      "http_status": 200
+    },
+    {
+      "control_id": "pg84_frankenstein",
+      "class": "human_public_domain",
+      "path": "evidence/raw/controls/human/pg84_frankenstein.txt",
+      "source": "https://www.gutenberg.org/cache/epub/84/pg84.txt",
+      "description": "Mary Shelley, Frankenstein (1818)",
+      "retrieved_utc": "2026-08-12T02:52:34Z",
+      "bytes": 448885,
+      "sha256": "7810cd483cffcf2cc8a1d8f0d5807931e69d4f48cd14149b8c76f88af82fead3",
+      "http_status": 200
+    },
+    {
+      "control_id": "compiler_assembly_output",
+      "class": "synthetic_tool_ascii",
+      "path": "evidence/raw/controls/synthetic/compiler_assembly_output.s",
+      "source": "clang -S -O1 on a locally written C source file",
+      "description": "Assembler output from the system C compiler. Deterministic tool output, not model output.",
+      "retrieved_utc": "2026-08-12T02:52:34Z",
+      "bytes": 2532,
+      "sha256": "188c70bf9a64d9bd6ca6e3a3329a659d6403c8eb6418e4ff1523c912e09b0976",
+      "generator": "clang",
+      "returncode": 0
+    },
+    {
+      "control_id": "handwritten_source_c",
+      "class": "synthetic_tool_ascii",
+      "path": "evidence/raw/controls/synthetic/handwritten_source.c",
+      "source": "Written by hand inside scripts/make_controls.py",
+      "description": "Hand-written ASCII C source embedded in this script. Provenance is this file.",
+      "retrieved_utc": "2026-08-12T02:52:34Z",
+      "bytes": 314,
+      "sha256": "9ffc16c3c90417489a0dfd3e5e9c8ad2e2b31dda49d5d6c740d3d89d291afda3",
+      "generator": "literal in make_controls.py"
+    },
+    {
+      "control_id": "python_disassembly",
+      "class": "synthetic_tool_ascii",
+      "path": "evidence/raw/controls/synthetic/python_disassembly.txt",
+      "source": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3 -c 'dis.dis(...)' over stdlib modules",
+      "description": "CPython bytecode disassembly. Deterministic tool output, not model output.",
+      "retrieved_utc": "2026-08-12T02:52:35Z",
+      "bytes": 765434,
+      "sha256": "8bd2c527a3d509d858c03e1d456165e212a1c8b255cf9ee2d3425f4008703d69",
+      "generator": "python dis",
+      "returncode": 0
+    },
+    {
+      "control_id": "random_printable_ascii",
+      "class": "synthetic_random_ascii",
+      "path": "evidence/raw/controls/synthetic/random_printable_ascii.txt",
+      "source": "random.Random(seed=20260812), alphabet = string.printable[:95] (U+0020..U+007E)",
+      "description": "Seeded pseudo-random printable ASCII. Reproducible by re-running this script.",
+      "retrieved_utc": "2026-08-12T02:52:35Z",
+      "bytes": 28828,
+      "sha256": "976ae86712b24ba132fdbea5effda96483d97fb33b038510d62d0c944aac81dd",
+      "seed": 20260812,
+      "python": "3.11.8",
+      "lines": 400
+    },
+    {
+      "control_id": "random_pseudo_prose_ascii",
+      "class": "synthetic_random_ascii",
+      "path": "evidence/raw/controls/synthetic/random_pseudo_prose_ascii.txt",
+      "source": "random.Random(seed=20260813), synthetic syllable words",
+      "description": "Seeded pseudo-random ASCII with prose-like shape and punctuation.",
+      "retrieved_utc": "2026-08-12T02:52:35Z",
+      "bytes": 46403,
+      "sha256": "f682f822d97c7c056d5f10c09197c786618fd7c75701e2d2bb4ff5085b6d573a",
+      "seed": 20260813,
+      "sentences": 600
+    }
+  ]
+}

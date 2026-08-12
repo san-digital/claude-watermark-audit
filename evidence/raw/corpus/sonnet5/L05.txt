@@ -1,0 +1,380 @@
+"""
+A small self-contained arithmetic expression interpreter.
+
+This module implements, from scratch and without any third-party
+dependencies, the three classic stages of a tiny language
+implementation:
+
+    1. Tokenizer (a.k.a. lexer) - turns a raw string such as
+       "2 + 3 * (4 - 1)" into a flat stream of Token objects.
+    2. Recursive descent parser - turns that stream of tokens into
+       an abstract syntax tree (AST) that reflects operator
+       precedence (``*`` and ``/`` bind tighter than ``+`` and
+       ``-``) and explicit parenthesisation.
+    3. Evaluator - walks the AST and computes a single numeric
+       result.
+
+The supported grammar, in a slightly informal EBNF, is::
+
+    expression := term (("+" | "-") term)*
+    term       := factor (("*" | "/") factor)*
+    factor     := INTEGER
+                | "(" expression ")"
+                | ("+" | "-") factor
+
+Only integers, parentheses and the four basic arithmetic operators
+(``+``, ``-``, ``*``, ``/``) are supported. Division always produces
+a Python float, matching the behaviour of Python's own ``/``
+operator.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from enum import Enum, auto
+from typing import List, Union
+
+
+# ---------------------------------------------------------------------------
+# Tokenizer
+# ---------------------------------------------------------------------------
+
+
+class TokenType(Enum):
+    """The distinct kinds of token our tiny language can produce."""
+
+    INTEGER = auto()
+    PLUS = auto()
+    MINUS = auto()
+    STAR = auto()
+    SLASH = auto()
+    LPAREN = auto()
+    RPAREN = auto()
+    EOF = auto()
+
+
+@dataclass(frozen=True)
+class Token:
+    """A single lexical token.
+
+    ``value`` is only meaningful for ``INTEGER`` tokens, where it
+    holds the parsed integer value; for every other token type it is
+    ``None``.
+    """
+
+    type: TokenType
+    value: Union[int, None] = None
+
+    def __repr__(self) -> str:  # pragma: no cover - debugging aid only
+        if self.value is None:
+            return f"Token({self.type.name})"
+        return f"Token({self.type.name}, {self.value!r})"
+
+
+# Characters that map directly onto a single-character token type.
+_SINGLE_CHAR_TOKENS = {
+    "+": TokenType.PLUS,
+    "-": TokenType.MINUS,
+    "*": TokenType.STAR,
+    "/": TokenType.SLASH,
+    "(": TokenType.LPAREN,
+    ")": TokenType.RPAREN,
+}
+
+
+class TokenizerError(Exception):
+    """Raised when the tokenizer encounters text it cannot make sense of."""
+
+
+class Tokenizer:
+    """Turns a raw source string into a list of :class:`Token` objects.
+
+    The tokenizer is deliberately simple: it makes a single left to
+    right pass over the input, skipping whitespace, recognising runs
+    of digits as integer literals, and mapping the four operator
+    characters and two parenthesis characters onto their token
+    types. Anything else raises :class:`TokenizerError`.
+    """
+
+    def __init__(self, text: str) -> None:
+        self._text = text
+        self._pos = 0
+        self._length = len(text)
+
+    def _current_char(self) -> Union[str, None]:
+        """Return the character under the cursor, or None at end of input."""
+        if self._pos >= self._length:
+            return None
+        return self._text[self._pos]
+
+    def _advance(self) -> None:
+        """Move the cursor one character to the right."""
+        self._pos += 1
+
+    def _skip_whitespace(self) -> None:
+        """Consume any run of spaces, tabs or newlines under the cursor."""
+        while self._current_char() is not None and self._current_char().isspace():
+            self._advance()
+
+    def _read_integer(self) -> int:
+        """Consume a contiguous run of digits and return it as an int."""
+        start = self._pos
+        while self._current_char() is not None and self._current_char().isdigit():
+            self._advance()
+        digits = self._text[start:self._pos]
+        return int(digits)
+
+    def tokenize(self) -> List[Token]:
+        """Convert the whole input string into a list of tokens.
+
+        The returned list always ends with a single ``EOF`` token,
+        which lets the parser check for the end of input without
+        special-casing ``None`` everywhere.
+        """
+        tokens: List[Token] = []
+        while True:
+            self._skip_whitespace()
+            char = self._current_char()
+
+            if char is None:
+                tokens.append(Token(TokenType.EOF))
+                break
+
+            if char.isdigit():
+                value = self._read_integer()
+                tokens.append(Token(TokenType.INTEGER, value))
+                continue
+
+            if char in _SINGLE_CHAR_TOKENS:
+                tokens.append(Token(_SINGLE_CHAR_TOKENS[char]))
+                self._advance()
+                continue
+
+            raise TokenizerError(
+                f"Unexpected character {char!r} at position {self._pos}"
+            )
+
+        return tokens
+
+
+# ---------------------------------------------------------------------------
+# Abstract syntax tree
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class Num:
+    """An integer literal, e.g. the ``42`` in ``42 + 1``."""
+
+    value: int
+
+
+@dataclass(frozen=True)
+class UnaryOp:
+    """A unary plus or minus applied to a single operand, e.g. ``-7``."""
+
+    op: TokenType
+    operand: "Node"
+
+
+@dataclass(frozen=True)
+class BinOp:
+    """A binary operation with a left and right operand, e.g. ``3 + 4``."""
+
+    op: TokenType
+    left: "Node"
+    right: "Node"
+
+
+Node = Union[Num, UnaryOp, BinOp]
+
+
+# ---------------------------------------------------------------------------
+# Parser
+# ---------------------------------------------------------------------------
+
+
+class ParseError(Exception):
+    """Raised when the token stream does not match the expected grammar."""
+
+
+class Parser:
+    """A recursive descent parser for the arithmetic grammar described
+    in the module docstring.
+
+    Each grammar rule (``expression``, ``term``, ``factor``) is
+    implemented as one method, and each method returns a small AST
+    node built from :class:`Num`, :class:`UnaryOp` and
+    :class:`BinOp`. Operator precedence falls straight out of the
+    structure of the grammar: ``term`` is built from ``factor`` nodes
+    connected by ``*``/``/``, and ``expression`` is built from
+    ``term`` nodes connected by ``+``/``-``, so multiplication and
+    division always bind tighter than addition and subtraction.
+    """
+
+    def __init__(self, tokens: List[Token]) -> None:
+        self._tokens = tokens
+        self._pos = 0
+
+    def _current(self) -> Token:
+        """Return the token currently under the cursor."""
+        return self._tokens[self._pos]
+
+    def _eat(self, expected_type: TokenType) -> Token:
+        """Consume the current token if it matches, otherwise raise.
+
+        Returns the consumed token so callers that need its value
+        (only ``INTEGER`` tokens carry one) can use it directly.
+        """
+        token = self._current()
+        if token.type is not expected_type:
+            raise ParseError(
+                f"Expected token {expected_type.name}, got {token.type.name}"
+            )
+        self._pos += 1
+        return token
+
+    def parse(self) -> Node:
+        """Parse the full token stream and return the root AST node.
+
+        Raises :class:`ParseError` if there are leftover tokens after
+        a complete expression has been parsed, which catches errors
+        such as a trailing stray operator or an unmatched closing
+        parenthesis.
+        """
+        node = self._expression()
+        self._eat(TokenType.EOF)
+        return node
+
+    def _expression(self) -> Node:
+        """expression := term (("+" | "-") term)*"""
+        node = self._term()
+        while self._current().type in (TokenType.PLUS, TokenType.MINUS):
+            op_token = self._current()
+            self._eat(op_token.type)
+            right = self._term()
+            node = BinOp(op=op_token.type, left=node, right=right)
+        return node
+
+    def _term(self) -> Node:
+        """term := factor (("*" | "/") factor)*"""
+        node = self._factor()
+        while self._current().type in (TokenType.STAR, TokenType.SLASH):
+            op_token = self._current()
+            self._eat(op_token.type)
+            right = self._factor()
+            node = BinOp(op=op_token.type, left=node, right=right)
+        return node
+
+    def _factor(self) -> Node:
+        """factor := INTEGER | "(" expression ")" | ("+" | "-") factor"""
+        token = self._current()
+
+        if token.type is TokenType.INTEGER:
+            self._eat(TokenType.INTEGER)
+            assert token.value is not None
+            return Num(token.value)
+
+        if token.type is TokenType.LPAREN:
+            self._eat(TokenType.LPAREN)
+            node = self._expression()
+            self._eat(TokenType.RPAREN)
+            return node
+
+        if token.type in (TokenType.PLUS, TokenType.MINUS):
+            self._eat(token.type)
+            operand = self._factor()
+            return UnaryOp(op=token.type, operand=operand)
+
+        raise ParseError(f"Unexpected token {token.type.name} in factor position")
+
+
+# ---------------------------------------------------------------------------
+# Evaluator
+# ---------------------------------------------------------------------------
+
+
+def evaluate_node(node: Node) -> Union[int, float]:
+    """Recursively walk an AST produced by :class:`Parser` and compute
+    its numeric value.
+
+    Integers stay integers for as long as possible; only division
+    (``/``) ever introduces a float, exactly as with Python's own
+    arithmetic operators.
+    """
+    if isinstance(node, Num):
+        return node.value
+
+    if isinstance(node, UnaryOp):
+        value = evaluate_node(node.operand)
+        if node.op is TokenType.MINUS:
+            return -value
+        return value  # unary plus is a no-op
+
+    if isinstance(node, BinOp):
+        left = evaluate_node(node.left)
+        right = evaluate_node(node.right)
+        if node.op is TokenType.PLUS:
+            return left + right
+        if node.op is TokenType.MINUS:
+            return left - right
+        if node.op is TokenType.STAR:
+            return left * right
+        if node.op is TokenType.SLASH:
+            return left / right
+        raise ValueError(f"Unknown binary operator {node.op}")  # pragma: no cover
+
+    raise TypeError(f"Unknown AST node type: {type(node)!r}")  # pragma: no cover
+
+
+def evaluate(text: str) -> Union[int, float]:
+    """Tokenize, parse and evaluate a single arithmetic expression.
+
+    This is the convenience entry point most callers want: pass in a
+    string such as ``"2 + 3 * (4 - 1)"`` and get back the numeric
+    result, in this case ``11``.
+    """
+    tokens = Tokenizer(text).tokenize()
+    tree = Parser(tokens).parse()
+    return evaluate_node(tree)
+
+
+# ---------------------------------------------------------------------------
+# Self-checks
+# ---------------------------------------------------------------------------
+#
+# A small set of assertions exercising tokenizing, parsing, operator
+# precedence, parentheses, unary minus, whitespace handling and error
+# reporting. These double as executable documentation of the module's
+# behaviour.
+
+assert evaluate("2 + 3 * 4") == 14
+assert evaluate("(2 + 3) * 4") == 20
+assert evaluate("10 - 2 - 3") == 5
+assert evaluate("2 * (3 + (4 - 1) * 2)") == 18
+assert evaluate("100 / 4 / 5") == 5.0
+assert evaluate("-5 + 3") == -2
+assert evaluate("-(3 + 4)") == -7
+assert evaluate("2 + -3 * 4") == -10
+assert evaluate("   12   +    8  ") == 20
+assert evaluate("7") == 7
+assert evaluate("1 + 2 + 3 + 4 + 5") == 15
+assert evaluate("2 * 2 * 2 * 2") == 16
+
+try:
+    evaluate("2 +")
+    assert False, "expected a ParseError for an incomplete expression"
+except ParseError:
+    pass
+
+try:
+    evaluate("(1 + 2")
+    assert False, "expected a ParseError for an unmatched parenthesis"
+except ParseError:
+    pass
+
+try:
+    evaluate("2 & 3")
+    assert False, "expected a TokenizerError for an unsupported character"
+except TokenizerError:
+    pass

@@ -1,0 +1,5 @@
+Plain ASCII line one.
+	Tabbed line two with punctuation: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+Digits 0123456789 and letters AZaz.
+CRLF line three.
+End.

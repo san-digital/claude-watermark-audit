@@ -1,0 +1,36 @@
+test_scanner_does_not_crash_or_mislabel_accents (test_scan_unicode.TestAccentedTextIsNormal.test_scanner_does_not_crash_or_mislabel_accents) ... ok
+test_bidi_fixture_flags_all_controls (test_scan_unicode.TestBidiControls.test_bidi_fixture_flags_all_controls) ... ok
+test_mn_mc_me_all_flagged (test_scan_unicode.TestCombiningMarks.test_mn_mc_me_all_flagged) ... ok
+test_byte_level_diff_reports_offsets_and_hex (test_scan_unicode.TestCompareBytes.test_byte_level_diff_reports_offsets_and_hex) ... ok
+test_cli_json_and_exit_codes (test_scan_unicode.TestCompareBytes.test_cli_json_and_exit_codes) ... ok
+test_crlf_vs_lf_classified_line_ending (test_scan_unicode.TestCompareBytes.test_crlf_vs_lf_classified_line_ending) ... ok
+test_curly_apostrophe_classified_typographic (test_scan_unicode.TestCompareBytes.test_curly_apostrophe_classified_typographic) ... ok
+test_identical_files (test_scan_unicode.TestCompareBytes.test_identical_files) ... ok
+test_nfc_vs_nfd_classified_normalization (test_scan_unicode.TestCompareBytes.test_nfc_vs_nfd_classified_normalization) ... ok
+test_zwsp_insertion_classified_invisible (test_scan_unicode.TestCompareBytes.test_zwsp_insertion_classified_invisible) ... ok
+test_generator_is_deterministic (test_scan_unicode.TestFixtureProvenance.test_generator_is_deterministic) ... ok
+test_generator_source_is_pure_ascii (test_scan_unicode.TestFixtureProvenance.test_generator_source_is_pure_ascii)
+Invisible chars must come from explicit escapes, not literals. ... ok
+test_homoglyphs_inside_latin_words_are_flagged (test_scan_unicode.TestHomoglyphs.test_homoglyphs_inside_latin_words_are_flagged) ... ok
+test_pure_cyrillic_words_are_not_flagged (test_scan_unicode.TestHomoglyphs.test_pure_cyrillic_words_are_not_flagged) ... ok
+test_every_invisible_codepoint_lands_in_invisible_bucket (test_scan_unicode.TestInvisibleCharacters.test_every_invisible_codepoint_lands_in_invisible_bucket) ... ok
+test_leading_bom_noted (test_scan_unicode.TestInvisibleCharacters.test_leading_bom_noted) ... ok
+test_hash_and_counts_match_raw_bytes (test_scan_unicode.TestNegativeControl.test_hash_and_counts_match_raw_bytes) ... ok
+test_negative_control_is_completely_clean (test_scan_unicode.TestNegativeControl.test_negative_control_is_completely_clean) ... ok
+test_scanner_never_modifies_input (test_scan_unicode.TestNegativeControl.test_scanner_never_modifies_input) ... ok
+test_all_four_forms_reported_with_hashes (test_scan_unicode.TestNormalization.test_all_four_forms_reported_with_hashes) ... ok
+test_mixed_nfc_nfd_detected (test_scan_unicode.TestNormalization.test_mixed_nfc_nfd_detected) ... ok
+test_positions_capped_at_200 (test_scan_unicode.TestPositionCap.test_positions_capped_at_200) ... ok
+test_json_output_parses (test_scan_unicode.TestScanCLI.test_json_output_parses) ... ok
+test_text_output_runs (test_scan_unicode.TestScanCLI.test_text_output_runs) ... ok
+test_tag_smuggling_detected_and_payload_decoded (test_scan_unicode.TestTagCharacters.test_tag_smuggling_detected_and_payload_decoded) ... ok
+test_ascii_equivalents_reported (test_scan_unicode.TestTypographicSeparation.test_ascii_equivalents_reported) ... ok
+test_buckets_are_reported_separately (test_scan_unicode.TestTypographicSeparation.test_buckets_are_reported_separately)
+Invisible and typographic counts live under distinct keys. ... ok
+test_typographic_fixture_is_typographic_not_invisible (test_scan_unicode.TestTypographicSeparation.test_typographic_fixture_is_typographic_not_invisible) ... ok
+test_variation_selectors_flagged (test_scan_unicode.TestVariationSelectors.test_variation_selectors_flagged) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.224s
+
+OK

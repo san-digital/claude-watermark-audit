@@ -1,0 +1,370 @@
+"""A tokenizer, recursive descent parser and evaluator for arithmetic.
+
+The language handled here is deliberately tiny. An expression is built from
+non-negative integer literals, the four binary operators + - * /, unary plus
+and minus, and parentheses for grouping. The usual precedence and
+associativity rules apply: unary operators bind tightest, then * and /, then
++ and -, and all binary operators are left associative.
+
+The grammar, written in EBNF, is:
+
+    expression := term ( ( "+" | "-" ) term )*
+    term       := factor ( ( "*" | "/" ) factor )*
+    factor     := ( "+" | "-" ) factor
+                | INTEGER
+                | "(" expression ")"
+
+The module is organised in three stages that can be used independently:
+
+    tokenize(text)  -> list[Token]
+    parse(tokens)   -> Node
+    evaluate(node)  -> int
+
+and a convenience function, calculate(text), that runs all three.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional, Union
+
+
+# ---------------------------------------------------------------------------
+# Errors
+# ---------------------------------------------------------------------------
+
+
+class CalculatorError(Exception):
+    """Base class for every error raised by this module."""
+
+    def __init__(self, message: str, position: Optional[int] = None):
+        self.message = message
+        self.position = position
+        if position is None:
+            super().__init__(message)
+        else:
+            super().__init__("{0} (at position {1})".format(message, position))
+
+
+class TokenizeError(CalculatorError):
+    """Raised when the input contains a character the lexer cannot handle."""
+
+
+class ParseError(CalculatorError):
+    """Raised when the token stream does not match the grammar."""
+
+
+class EvaluationError(CalculatorError):
+    """Raised when a syntactically valid expression cannot be evaluated."""
+
+
+# ---------------------------------------------------------------------------
+# Tokens
+# ---------------------------------------------------------------------------
+
+INTEGER = "INTEGER"
+PLUS = "PLUS"
+MINUS = "MINUS"
+STAR = "STAR"
+SLASH = "SLASH"
+LPAREN = "LPAREN"
+RPAREN = "RPAREN"
+EOF = "EOF"
+
+# Single character operators and punctuation, mapped to their token kind.
+SIMPLE_TOKENS = {
+    "+": PLUS,
+    "-": MINUS,
+    "*": STAR,
+    "/": SLASH,
+    "(": LPAREN,
+    ")": RPAREN,
+}
+
+# Operator token kinds grouped by precedence level, used by the parser.
+ADDITIVE = (PLUS, MINUS)
+MULTIPLICATIVE = (STAR, SLASH)
+
+
+@dataclass(frozen=True)
+class Token:
+    """A single lexical unit.
+
+    Attributes:
+        kind: one of the module level token kind constants.
+        text: the exact source text this token was produced from.
+        position: the index in the source string where the token starts.
+        value: the integer value, for INTEGER tokens only.
+    """
+
+    kind: str
+    text: str
+    position: int
+    value: Optional[int] = None
+
+    def __str__(self) -> str:
+        return "{0}({1!r})".format(self.kind, self.text)
+
+
+# ---------------------------------------------------------------------------
+# Tokenizer
+# ---------------------------------------------------------------------------
+
+
+def tokenize(text: str) -> List[Token]:
+    """Convert source text into a list of tokens ending with EOF.
+
+    Whitespace is skipped. Runs of digits become a single INTEGER token.
+    Anything else must appear in SIMPLE_TOKENS or a TokenizeError is raised.
+    """
+    tokens: List[Token] = []
+    index = 0
+    length = len(text)
+
+    while index < length:
+        char = text[index]
+
+        # Whitespace carries no meaning in this language, so drop it.
+        if char.isspace():
+            index += 1
+            continue
+
+        if char.isdigit():
+            start = index
+            while index < length and text[index].isdigit():
+                index += 1
+            literal = text[start:index]
+            tokens.append(
+                Token(kind=INTEGER, text=literal, position=start, value=int(literal))
+            )
+            continue
+
+        kind = SIMPLE_TOKENS.get(char)
+        if kind is None:
+            raise TokenizeError("unexpected character {0!r}".format(char), index)
+
+        tokens.append(Token(kind=kind, text=char, position=index))
+        index += 1
+
+    tokens.append(Token(kind=EOF, text="", position=length))
+    return tokens
+
+
+# ---------------------------------------------------------------------------
+# Syntax tree
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class Number:
+    """A literal integer in the source."""
+
+    value: int
+
+
+@dataclass(frozen=True)
+class UnaryOp:
+    """A prefix + or - applied to a single operand."""
+
+    operator: str
+    operand: "Node"
+
+
+@dataclass(frozen=True)
+class BinaryOp:
+    """An infix operator applied to a left and a right operand."""
+
+    operator: str
+    left: "Node"
+    right: "Node"
+
+
+Node = Union[Number, UnaryOp, BinaryOp]
+
+
+# ---------------------------------------------------------------------------
+# Parser
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class Parser:
+    """A recursive descent parser over a token list.
+
+    One method exists per grammar production. Each method consumes exactly
+    the tokens belonging to its production and leaves the cursor on the first
+    token it did not consume.
+    """
+
+    tokens: List[Token]
+    position: int = field(default=0)
+
+    @property
+    def current(self) -> Token:
+        """The token the parser is currently looking at."""
+        return self.tokens[self.position]
+
+    def advance(self) -> Token:
+        """Return the current token and step past it."""
+        token = self.tokens[self.position]
+        if token.kind != EOF:
+            self.position += 1
+        return token
+
+    def expect(self, kind: str) -> Token:
+        """Consume the current token, which must be of the given kind."""
+        token = self.current
+        if token.kind != kind:
+            raise ParseError(
+                "expected {0} but found {1}".format(kind, token.kind), token.position
+            )
+        return self.advance()
+
+    def parse(self) -> Node:
+        """Parse a complete expression and require the input to be exhausted."""
+        node = self.expression()
+        if self.current.kind != EOF:
+            raise ParseError(
+                "unexpected trailing input {0!r}".format(self.current.text),
+                self.current.position,
+            )
+        return node
+
+    def expression(self) -> Node:
+        """expression := term ( ( "+" | "-" ) term )*"""
+        node = self.term()
+        # Looping rather than recursing here is what makes + and - left
+        # associative: 1 - 2 - 3 parses as (1 - 2) - 3.
+        while self.current.kind in ADDITIVE:
+            operator = self.advance()
+            node = BinaryOp(operator=operator.text, left=node, right=self.term())
+        return node
+
+    def term(self) -> Node:
+        """term := factor ( ( "*" | "/" ) factor )*"""
+        node = self.factor()
+        while self.current.kind in MULTIPLICATIVE:
+            operator = self.advance()
+            node = BinaryOp(operator=operator.text, left=node, right=self.factor())
+        return node
+
+    def factor(self) -> Node:
+        """factor := ( "+" | "-" ) factor | INTEGER | "(" expression ")" """
+        token = self.current
+
+        if token.kind in ADDITIVE:
+            # Unary plus or minus, which may stack: - - 5 is legal.
+            self.advance()
+            return UnaryOp(operator=token.text, operand=self.factor())
+
+        if token.kind == INTEGER:
+            self.advance()
+            return Number(value=token.value)
+
+        if token.kind == LPAREN:
+            self.advance()
+            node = self.expression()
+            self.expect(RPAREN)
+            return node
+
+        raise ParseError(
+            "expected a number, a sign or '(' but found {0}".format(token.kind),
+            token.position,
+        )
+
+
+def parse(tokens: List[Token]) -> Node:
+    """Parse a token list produced by tokenize into a syntax tree."""
+    return Parser(tokens=tokens).parse()
+
+
+# ---------------------------------------------------------------------------
+# Evaluator
+# ---------------------------------------------------------------------------
+
+
+def evaluate(node: Node) -> int:
+    """Walk a syntax tree and compute its integer value.
+
+    Division is integer division truncated towards zero, which matches the
+    behaviour of most C-like languages rather than Python's floor division.
+    """
+    if isinstance(node, Number):
+        return node.value
+
+    if isinstance(node, UnaryOp):
+        value = evaluate(node.operand)
+        return value if node.operator == "+" else -value
+
+    if isinstance(node, BinaryOp):
+        left = evaluate(node.left)
+        right = evaluate(node.right)
+        if node.operator == "+":
+            return left + right
+        if node.operator == "-":
+            return left - right
+        if node.operator == "*":
+            return left * right
+        if node.operator == "/":
+            if right == 0:
+                raise EvaluationError("division by zero")
+            # abs() then a sign fix gives truncation towards zero.
+            quotient = abs(left) // abs(right)
+            return -quotient if (left < 0) != (right < 0) else quotient
+        raise EvaluationError("unknown operator {0!r}".format(node.operator))
+
+    raise EvaluationError("unknown node type {0!r}".format(type(node).__name__))
+
+
+def calculate(text: str) -> int:
+    """Tokenize, parse and evaluate an expression in one call."""
+    return evaluate(parse(tokenize(text)))
+
+
+# ---------------------------------------------------------------------------
+# Self tests
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    # Tokenizer.
+    assert [t.kind for t in tokenize("1+2")] == [INTEGER, PLUS, INTEGER, EOF]
+    assert tokenize("  42  ")[0].value == 42
+    assert len(tokenize("")) == 1
+
+    # Precedence and associativity.
+    assert calculate("1 + 2 * 3") == 7
+    assert calculate("(1 + 2) * 3") == 9
+    assert calculate("10 - 3 - 2") == 5
+    assert calculate("100 / 5 / 2") == 10
+    assert calculate("2 * 3 + 4 * 5") == 26
+
+    # Unary operators.
+    assert calculate("-5") == -5
+    assert calculate("- -5") == 5
+    assert calculate("3 * -2") == -6
+    assert calculate("-(4 + 6)") == -10
+
+    # Truncating division.
+    assert calculate("7 / 2") == 3
+    assert calculate("-7 / 2") == -3
+    assert calculate("7 / -2") == -3
+
+    # Nested parentheses and whitespace tolerance.
+    assert calculate("((((5))))") == 5
+    assert calculate("  2  *  ( 3 + ( 4 - 1 ) )  ") == 12
+
+    # Error handling.
+    for bad, error in [
+        ("1 $ 2", TokenizeError),
+        ("1 +", ParseError),
+        ("(1 + 2", ParseError),
+        ("1 2", ParseError),
+        (")", ParseError),
+        ("1 / 0", EvaluationError),
+    ]:
+        try:
+            calculate(bad)
+        except error:
+            pass
+        else:
+            raise AssertionError("expected {0} for {1!r}".format(error.__name__, bad))
+
+    print("all assertions passed")

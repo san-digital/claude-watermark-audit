@@ -1,0 +1,90 @@
+"""A small least-recently-used cache.
+
+The implementation keeps an ordered mapping of keys to values. Reading or
+writing a key moves it to the most-recently-used end, and once the cache is
+full the least-recently-used entry is discarded to make room.
+"""
+
+from collections import OrderedDict
+
+
+class LRUCacheError(Exception):
+    """Raised when the cache is configured with invalid arguments."""
+
+
+class LRUCache:
+    """A fixed-capacity cache with least-recently-used eviction.
+
+    Args:
+        capacity: the maximum number of entries to retain. Must be positive.
+
+    Both get and put run in amortised constant time, because OrderedDict is
+    backed by a hash table plus a doubly linked list of insertion order.
+    """
+
+    __slots__ = ("_capacity", "_entries", "hits", "misses", "evictions")
+
+    def __init__(self, capacity=128):
+        if not isinstance(capacity, int) or isinstance(capacity, bool):
+            raise LRUCacheError("capacity must be an integer")
+        if capacity < 1:
+            raise LRUCacheError("capacity must be at least 1")
+        self._capacity = capacity
+        self._entries = OrderedDict()
+        self.hits = 0
+        self.misses = 0
+        self.evictions = 0
+
+    @property
+    def capacity(self):
+        """The maximum number of entries the cache will hold."""
+        return self._capacity
+
+    def get(self, key, default=None):
+        """Return the value for key, marking it as recently used.
+
+        If the key is absent, default is returned and the miss is counted.
+        """
+        if key not in self._entries:
+            self.misses += 1
+            return default
+        # Touching the key promotes it to the most-recently-used position.
+        self._entries.move_to_end(key)
+        self.hits += 1
+        return self._entries[key]
+
+    def put(self, key, value):
+        """Insert or update key, evicting the oldest entry if necessary."""
+        if key in self._entries:
+            self._entries[key] = value
+            self._entries.move_to_end(key)
+            return
+        self._entries[key] = value
+        if len(self._entries) > self._capacity:
+            # last=False pops from the least-recently-used end.
+            self._entries.popitem(last=False)
+            self.evictions += 1
+
+    def pop(self, key, default=None):
+        """Remove key from the cache and return its value, or default."""
+        return self._entries.pop(key, default)
+
+    def clear(self):
+        """Drop every entry but keep the configured capacity and counters."""
+        self._entries.clear()
+
+    def keys(self):
+        """Return the cached keys, least recently used first."""
+        return list(self._entries)
+
+    def __contains__(self, key):
+        # Membership testing deliberately does not count as a use.
+        return key in self._entries
+
+    def __len__(self):
+        return len(self._entries)
+
+    def __repr__(self):
+        return "LRUCache(capacity={0}, size={1}, hits={2}, misses={3})".format(
+            self._capacity, len(self._entries), self.hits, self.misses
+        )

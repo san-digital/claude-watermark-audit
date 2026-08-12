@@ -1,0 +1,15 @@
+The shipping container revolutionized global commerce by providing a standardized, stackable, and reusable solution for transporting goods across oceans, rails, and roads. Before containers, cargo handling was labor-intensive, inefficient, and prone to damage.
+
+In the 1950s, American trucking entrepreneur Malcolm McLean developed the modern container concept. Frustrated by slow dock operations, he envisioned standardized metal boxes that could be transferred from trucks to ships without unpacking contents. McLean founded Seatrain Lines and built the first purpose-designed container ship in 1956, the Ideal X, which carried 58 containers from Newark to Houston.
+
+The initial container dimensions were 35 feet long, though the industry gradually standardized on the Twenty-foot Equivalent Unit, or TEU. A TEU container measures 20 feet long, 8 feet wide, and 8.5 feet tall, holding about 25 tons of cargo. Forty-foot containers, known as FEUs, followed and became equally popular. These standardized dimensions allowed containers to stack safely and fit into specially designed ships, trucks, and rail cars.
+
+Early adoption faced significant resistance from dock workers who feared job losses and shipping companies reluctant to invest in new infrastructure. Labor unions fought containerization fiercely, and the transition took decades. Port authorities eventually recognized the competitive advantages: dramatic reductions in handling time, lower theft and damage rates, faster turnaround times for vessels, and substantially lower overall shipping costs.
+
+Japan embraced containerization aggressively in the 1960s, using it to build an export-driven economy. Japanese manufacturers leveraged cheap ocean shipping to compete globally. This advantage accelerated Japan's emergence as an economic powerhouse and demonstrated container technology's strategic importance.
+
+The development of container ships evolved alongside the containers themselves. Early vessels carried containers on deck and in modified holds, but specialized container ships with massive cranes and cellular storage systems emerged. Modern mega-ships can carry over 20,000 TEU and represent billions of dollars in investment. Ports required expensive infrastructure including gantry cranes, automated storage systems, and sophisticated logistics software.
+
+Containerization enabled globalization by making it economical to manufacture goods in distant countries and ship them worldwide. Supply chains extended across oceans as shipping costs plummeted. The container standardization was crucial: any container fits on any ship, truck, or rail car certified for that container type.
+
+Today, containers handle about 90 percent of non-bulk cargo globally. The system has evolved little since McLean's original concept. The basic 20-foot and 40-foot dimensions remain standard worldwide. Specialized containers now exist for different cargo types: refrigerated containers for produce, flat racks for oversized items, and tank containers for liquids. This evolution from a 1950s innovation into the backbone of modern commerce demonstrates how standardization can create transformative change.

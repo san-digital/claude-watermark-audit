@@ -1,0 +1,14 @@
+PIPELINE-POSITIVE-CONTROL-V1
+This file was written by a Claude model (the orchestrator, claude-fable-5) using the
+same Write tool path used to collect the model corpus. It deliberately contains hidden
+characters. If they survive to disk, the collection pipeline can carry them, and a
+finding of zero hidden characters in the corpus is meaningful rather than an artefact.
+ZWSP:[​] ZWNJ:[‌] ZWJ:[‍] WJ:[⁠] BOM:[﻿] SHY:[­]
+NBSP:[ ] NNBSP:[ ] THINSP:[ ] EMSP:[ ]
+LRM:[‎] RLM:[‏] LRI:[⁦] PDI:[⁩] RLO:[‮] PDF:[⁬]
+VS15:[︎] VS16:[️]
+TAGS:[󠀁󠁈󠁉󠁿]
+COMBINING:[é ä̧]
+HOMOGLYPH:[раypаl sеcurе bοdy]
+TYPOGRAPHIC:['single' "double" en–dash em—dash ell…]
+END-OF-PROBE

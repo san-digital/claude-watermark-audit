@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-08-12T03:12:28Z",
+  "purpose": "Material caveats about how each corpus was actually produced, as reported by the generating agents and verified where possible. Recorded so downstream analysis is not misled about provenance.",
+  "notes": [
+    {
+      "corpus": "sonnet5",
+      "caveat": "Not produced by a single uniform context. The primary sonnet agent wrote S01-S10, M01-M10 and L06-L10 itself; L01-L05 were written by a nested delegated sonnet subagent. A second delegated subagent declined the batch, and the primary agent then completed it directly.",
+      "impact": "Model tier and collection surface are unchanged (sonnet -> Write tool -> file), so character-level H1 analysis is unaffected. Distributional/statistical comparison is mildly confounded for sonnet5 because L01-L05 come from a different context window than the rest.",
+      "classification": "Observed anomaly, not established as watermark"
+    },
+    {
+      "corpus": "all",
+      "caveat": "Each model's 30 samples were generated within a single conversation context, in prompt order. Later samples are therefore conditioned on earlier ones.",
+      "impact": "This specifically invalidates the repeat-prompt test (S01/S10, M01/M10, L01/L10) as a measure of sampling determinism: because S10 follows S01 in the same context, a model can simply reproduce its earlier answer. haiku45 produced byte-identical text for all three repeat pairs, which is fully explained by in-context copying and must NOT be read as evidence about temperature, determinism or watermarking.",
+      "classification": "Observed anomaly, not established as watermark"
+    },
+    {
+      "corpus": "all",
+      "caveat": "Sampling parameters (temperature, top_p, top_k, seed) are not settable or observable through the Agent tool.",
+      "impact": "Any test requiring controlled or varied temperature is impossible here.",
+      "classification": "Test not possible in this environment"
+    },
+    {
+      "corpus": "fable5",
+      "caveat": "The generating agent disclosed one post-generation content edit: in L07 it replaced the phrase 'habits of mind' with 'daily rhythms' to comply with a standing user writing rule present in its environment.",
+      "impact": "A lexical substitution, not a character-level one. It does not affect the Unicode/byte analysis. It is a mild confound for word-frequency statistics on fable5/L07, and it is a reminder that ambient user instructions in the environment can alter generated text.",
+      "classification": "Observed anomaly, not established as watermark"
+    },
+    {
+      "corpus": "all",
+      "caveat": "Generator agents self-reported their runtime model identifiers (claude-opus-5, claude-sonnet-5, claude-haiku-4-5-20251001, claude-fable-5). Every one of them stated the report was from its system prompt and not independently verifiable.",
+      "impact": "Model identity is asserted by the harness and corroborated only by self-report. No response header or API metadata exposing the served model was reachable. Cross-model claims inherit this uncertainty.",
+      "classification": "Plausible but unverified"
+    }
+  ]
+}

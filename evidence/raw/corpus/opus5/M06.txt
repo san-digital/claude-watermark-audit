@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Middlemarch",
+    "author": "George Eliot",
+    "year": 1872,
+    "tags": ["realism", "provincial life", "marriage", "reform"],
+    "summary": "Set in a fictional Midlands town on the eve of the 1832 Reform Act, the novel follows Dorothea Brooke's disastrous marriage to the scholar Casaubon and the young doctor Lydgate's slow defeat by debt and provincial politics. Eliot treats ordinary lives with an unusually wide moral sympathy."
+  },
+  {
+    "id": 2,
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "year": 1851,
+    "tags": ["sea", "obsession", "whaling", "american"],
+    "summary": "Ishmael signs aboard the whaler Pequod and discovers that its captain, Ahab, has turned the voyage into a hunt for the white whale that took his leg. The narrative repeatedly breaks into essays on whales, rope, colour and belief."
+  },
+  {
+    "id": 3,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "year": 1866,
+    "tags": ["psychological", "guilt", "russian", "crime"],
+    "summary": "An impoverished former student in St Petersburg murders a pawnbroker to test a theory that extraordinary men stand above ordinary morality. The book is largely the account of his disintegration under guilt and the patient pressure of the investigator Porfiry."
+  },
+  {
+    "id": 4,
+    "title": "Madame Bovary",
+    "author": "Gustave Flaubert",
+    "year": 1857,
+    "tags": ["realism", "french", "adultery", "provincial life"],
+    "summary": "Emma Bovary, married to a dull country doctor, pursues the romantic life she has read about through affairs and ruinous spending. Flaubert's refusal to moralise about her led to his prosecution for offending public decency."
+  },
+  {
+    "id": 5,
+    "title": "Jane Eyre",
+    "author": "Charlotte Bronte",
+    "year": 1847,
+    "tags": ["gothic", "bildungsroman", "governess", "romance"],
+    "summary": "An orphaned girl endures a brutal charity school, becomes a governess at Thornfield Hall and falls in love with her employer, Mr Rochester, whose house holds a secret. The first-person voice was startling for its plainness and self-assertion."
+  },
+  {
+    "id": 6,
+    "title": "Great Expectations",
+    "author": "Charles Dickens",
+    "year": 1861,
+    "tags": ["bildungsroman", "class", "london", "serial"],
+    "summary": "The blacksmith's apprentice Pip receives money from an unknown benefactor and is made a gentleman in London, at the cost of his loyalty to those who raised him. The revelation of where the fortune came from undoes every assumption he has built his life on."
+  },
+  {
+    "id": 7,
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "year": 1869,
+    "tags": ["historical", "russian", "napoleonic wars", "family"],
+    "summary": "Following several aristocratic families through the Napoleonic invasion of Russia, the novel moves between drawing rooms, battlefields and the burning of Moscow. Tolstoy interleaves the story with essays arguing that history is driven by countless small causes rather than great men."
+  },
+  {
+    "id": 8,
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "year": 1890,
+    "tags": ["gothic", "aestheticism", "decadence", "morality"],
+    "summary": "A beautiful young man wishes that his portrait would age in his place, and it does, recording every cruelty while he remains unmarked. Wilde's only novel was attacked as immoral and later used against him at his trial."
+  }
+]

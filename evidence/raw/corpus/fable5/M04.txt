@@ -1,0 +1,23 @@
+1. **Agree on why you are moving.** Write down the two or three concrete problems the current tracker causes. This becomes your acceptance test for the new tool and stops the migration drifting into a wishlist exercise.
+
+2. **Appoint a single owner.** One person runs the migration, makes tie-break decisions, and owns the timeline. Committees stall migrations; owners finish them.
+
+3. **Audit what you actually use.** List the fields, workflows, labels, and integrations the team genuinely relies on. Most teams discover half their custom fields are dead weight that should not survive the move.
+
+4. **Choose what history to bring.** Decide up front whether you migrate everything, only open issues, or open issues plus the last six months of closed ones. Full history sounds safe but multiplies mapping effort and import errors.
+
+5. **Map statuses and fields on paper first.** Build a simple spreadsheet mapping old statuses, priorities, and fields to their new equivalents. Get the team to review it before any data moves.
+
+6. **Run a trial import into a sandbox.** Import a representative slice, including your ugliest issues with attachments, comments, and weird formatting. Fix the mapping while mistakes are still cheap.
+
+7. **Clean before you migrate, not after.** Close stale issues, merge duplicates, and prune dead labels in the old system. Migrating rubbish just gives you rubbish with a new interface.
+
+8. **Rebuild integrations early.** Reconnect source control, CI, chat notifications, and any automation in the sandbox phase. Broken integrations are the most common reason teams quietly drift back to the old tool.
+
+9. **Set a hard cutover date and freeze.** Announce the date, then freeze writes to the old tracker a few hours before the final import. Running both systems in parallel for weeks guarantees divergence.
+
+10. **Keep the old system read-only.** Do not delete it. Keep it accessible for at least six months so old links and half-remembered issues can still be found while people build trust in the new tool.
+
+11. **Spend one hour training, not one day.** Walk the team through the new workflow, the mapping decisions, and where their old issues went. Follow up with a one-page cheat sheet pinned in chat.
+
+12. **Review after two weeks.** Hold a short retrospective against the problems you wrote down in step one. Fix the top complaints immediately, because the first fortnight decides whether the team adopts the tool or merely tolerates it.

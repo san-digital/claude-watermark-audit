@@ -1,0 +1,8 @@
+SPACE-PROBE-V2
+A B = NBSP between A and B, no ordinary spaces adjacent
+C D = NNBSP between C and D
+E F = THIN SPACE between E and F
+G H = EM SPACE between G and H
+I J = EN SPACE between I and J
+K L = IDEOGRAPHIC SPACE between K and L
+END

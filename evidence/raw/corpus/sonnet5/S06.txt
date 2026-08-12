@@ -1,0 +1,1 @@
+{"city":"Lyon","country":"France","population":522250,"founded_year":-43,"notable_for":["gastronomy","silk weaving history","Fourviere basilica","birthplace of cinema (Lumiere brothers)","Renaissance old town"]}

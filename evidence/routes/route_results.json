@@ -1,0 +1,151 @@
+{
+  "generated_utc": "2026-08-12T02:56:10Z",
+  "generator": "scripts/route_test.py",
+  "platform": "darwin",
+  "probes": {
+    "ascii_control": {
+      "source_path": "evidence/routes/ascii_control__R0_source.txt",
+      "source_sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+      "source_bytes": 458,
+      "routes": {
+        "R1_python_binary_write": {
+          "ok": true,
+          "note": "baseline; binary write, no encoding layer",
+          "path": "evidence/routes/ascii_control__R1_python_binary_write.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R2_bash_redirect": {
+          "ok": true,
+          "returncode": 0,
+          "note": "bash cat + stdout redirection to file",
+          "path": "evidence/routes/ascii_control__R2_bash_redirect.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R3_macos_clipboard": {
+          "ok": true,
+          "note": "macOS NSPasteboard round-trip via pbcopy/pbpaste",
+          "path": "evidence/routes/ascii_control__R3_macos_clipboard.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R4_pty_terminal": {
+          "ok": true,
+          "returncode": 0,
+          "note": "pty capture via stdlib pty.openpty(); LF->CRLF translation by the tty line discipline is EXPECTED and is a terminal artefact, not model output",
+          "path": "evidence/routes/ascii_control__R4_pty_terminal.txt",
+          "bytes": 469,
+          "sha256": "02b84ac8d6c522f0f8c099b7b163f2331287c9b31c44868dc3cf55ffaa38bfbc",
+          "identical_to_source": false,
+          "byte_delta": 11
+        },
+        "R5_python_text_write": {
+          "ok": true,
+          "note": "python text-mode write, newline='' (no translation)",
+          "path": "evidence/routes/ascii_control__R5_python_text_write.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R6_json_transport_unicode": {
+          "ok": true,
+          "note": "json.dumps(ensure_ascii=False) -> json.loads; models the tool-call transport layer",
+          "path": "evidence/routes/ascii_control__R6_json_transport_unicode.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R7_json_transport_escaped": {
+          "ok": true,
+          "note": "json.dumps(ensure_ascii=True) -> json.loads",
+          "path": "evidence/routes/ascii_control__R7_json_transport_escaped.txt",
+          "bytes": 458,
+          "sha256": "305749db0cffb5cc2f95e0cd07d5fed7a024734fe03bb28550d63a43f85c1eec",
+          "identical_to_source": true,
+          "byte_delta": 0
+        }
+      }
+    },
+    "unicode_probe": {
+      "source_path": "evidence/routes/unicode_probe__R0_source.txt",
+      "source_sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+      "source_bytes": 558,
+      "routes": {
+        "R1_python_binary_write": {
+          "ok": true,
+          "note": "baseline; binary write, no encoding layer",
+          "path": "evidence/routes/unicode_probe__R1_python_binary_write.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R2_bash_redirect": {
+          "ok": true,
+          "returncode": 0,
+          "note": "bash cat + stdout redirection to file",
+          "path": "evidence/routes/unicode_probe__R2_bash_redirect.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R3_macos_clipboard": {
+          "ok": true,
+          "note": "macOS NSPasteboard round-trip via pbcopy/pbpaste",
+          "path": "evidence/routes/unicode_probe__R3_macos_clipboard.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R4_pty_terminal": {
+          "ok": true,
+          "returncode": 0,
+          "note": "pty capture via stdlib pty.openpty(); LF->CRLF translation by the tty line discipline is EXPECTED and is a terminal artefact, not model output",
+          "path": "evidence/routes/unicode_probe__R4_pty_terminal.txt",
+          "bytes": 571,
+          "sha256": "1fe872ff07d1ea07acb1253bcca139aaf68378dc6ca9b84e849473aae1a63529",
+          "identical_to_source": false,
+          "byte_delta": 13
+        },
+        "R5_python_text_write": {
+          "ok": true,
+          "note": "python text-mode write, newline='' (no translation)",
+          "path": "evidence/routes/unicode_probe__R5_python_text_write.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R6_json_transport_unicode": {
+          "ok": true,
+          "note": "json.dumps(ensure_ascii=False) -> json.loads; models the tool-call transport layer",
+          "path": "evidence/routes/unicode_probe__R6_json_transport_unicode.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        },
+        "R7_json_transport_escaped": {
+          "ok": true,
+          "note": "json.dumps(ensure_ascii=True) -> json.loads",
+          "path": "evidence/routes/unicode_probe__R7_json_transport_escaped.txt",
+          "bytes": 558,
+          "sha256": "ac0d321f8fa0154062585a627cbf91c8b235dd6573e43d7976a40036f1fede90",
+          "identical_to_source": true,
+          "byte_delta": 0
+        }
+      }
+    }
+  }
+}

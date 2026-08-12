@@ -1,0 +1,12 @@
+1. **Audit your current data.** Export every issue, comment, attachment, and custom field from the old tracker before touching anything else, and note which fields your team actually uses versus what has sat empty for years.
+2. **Map fields between systems.** Match statuses, priorities, and issue types in the old tool to their nearest equivalent in the new one, and decide upfront where there's no clean match.
+3. **Choose a cutover date.** Freeze new issue creation in the old tracker at a fixed time so nothing gets created or updated mid-migration and lost in the gap.
+4. **Run a small pilot migration.** Move one project or a sample of fifty issues first, then have the team check the results before committing to the full migration.
+5. **Preserve issue history.** Confirm whether comments, status changes, and timestamps carry over, since losing this context is the most common regret teams report afterward.
+6. **Decide what not to migrate.** Archive or export closed issues older than a set cutoff instead of dragging years of stale tickets into the new system.
+7. **Set up workflows first.** Build out statuses, transitions, and automation rules in the new tracker before importing data, so issues land in a structure that already works.
+8. **Update integrations.** Reconnect version control, CI pipelines, chat notifications, and any other tools that referenced the old tracker's webhooks or API.
+9. **Reassign ownership.** Check that assignees, watchers, and reporters map correctly to real user accounts in the new system rather than defaulting to a generic import user.
+10. **Communicate the change early.** Give the team advance notice, a short how-to guide, and a clear date so nobody is caught mid-sprint with an unfamiliar tool.
+11. **Keep the old tracker read-only.** Don't delete or cancel the old subscription immediately; keep it accessible in read-only mode for a few months in case something was missed.
+12. **Review after two weeks.** Gather feedback once the team has actually used the new tracker day to day, and fix workflow friction while it's still fresh rather than letting it calcify.

@@ -1,0 +1,371 @@
+"""A tokenizer, recursive descent parser, and evaluator for arithmetic.
+
+This module implements a small expression language supporting:
+
+* non-negative integer literals
+* the four basic binary operators: +, -, *, /
+* unary minus and unary plus
+* parentheses for grouping
+
+The grammar, in EBNF, with standard precedence (unary binds tightest,
+then * and /, then + and -), all binary operators left-associative:
+
+    expr    := term (("+" | "-") term)*
+    term    := factor (("*" | "/") factor)*
+    factor  := ("+" | "-") factor | primary
+    primary := INTEGER | "(" expr ")"
+
+Division is true division and returns a float; all other operations on
+integers return integers. Division by zero raises EvaluationError.
+"""
+
+
+# ---------------------------------------------------------------------------
+# Errors
+# ---------------------------------------------------------------------------
+
+class ExpressionError(Exception):
+    """Base class for all errors raised by this module."""
+
+
+class TokenizeError(ExpressionError):
+    """Raised when the input contains a character that is not part of
+    the language."""
+
+
+class ParseError(ExpressionError):
+    """Raised when the token stream does not match the grammar."""
+
+
+class EvaluationError(ExpressionError):
+    """Raised for runtime failures such as division by zero."""
+
+
+# ---------------------------------------------------------------------------
+# Tokens
+# ---------------------------------------------------------------------------
+
+# Token type constants. A richer language would use an enum; simple
+# strings keep the module dependency-free and easy to inspect.
+T_INTEGER = "INTEGER"
+T_PLUS = "PLUS"
+T_MINUS = "MINUS"
+T_STAR = "STAR"
+T_SLASH = "SLASH"
+T_LPAREN = "LPAREN"
+T_RPAREN = "RPAREN"
+T_EOF = "EOF"
+
+# Single-character tokens and their types, used by the tokenizer loop.
+_SINGLE_CHAR_TOKENS = {
+    "+": T_PLUS,
+    "-": T_MINUS,
+    "*": T_STAR,
+    "/": T_SLASH,
+    "(": T_LPAREN,
+    ")": T_RPAREN,
+}
+
+
+class Token:
+    """A single lexical token.
+
+    Attributes:
+        type: one of the T_* constants above.
+        value: the integer value for INTEGER tokens, otherwise the
+            source text of the token.
+        position: index of the token's first character in the input,
+            used to produce helpful error messages.
+    """
+
+    def __init__(self, type_, value, position):
+        self.type = type_
+        self.value = value
+        self.position = position
+
+    def __repr__(self):
+        return "Token({!r}, {!r}, pos={})".format(
+            self.type, self.value, self.position
+        )
+
+    def __eq__(self, other):
+        if not isinstance(other, Token):
+            return NotImplemented
+        return (
+            self.type == other.type
+            and self.value == other.value
+            and self.position == other.position
+        )
+
+
+def tokenize(text):
+    """Convert a source string into a list of Tokens.
+
+    The list always ends with a single EOF token so the parser never
+    has to check for running off the end.
+
+    Raises:
+        TokenizeError: if an unexpected character is found.
+    """
+    tokens = []
+    index = 0
+    length = len(text)
+
+    while index < length:
+        char = text[index]
+
+        # Skip whitespace between tokens.
+        if char in " \t\r\n":
+            index += 1
+            continue
+
+        # Integer literals: one or more ASCII digits.
+        if char.isdigit():
+            start = index
+            while index < length and text[index].isdigit():
+                index += 1
+            literal = text[start:index]
+            tokens.append(Token(T_INTEGER, int(literal), start))
+            continue
+
+        # Operators and parentheses.
+        token_type = _SINGLE_CHAR_TOKENS.get(char)
+        if token_type is not None:
+            tokens.append(Token(token_type, char, index))
+            index += 1
+            continue
+
+        raise TokenizeError(
+            "unexpected character {!r} at position {}".format(char, index)
+        )
+
+    tokens.append(Token(T_EOF, None, length))
+    return tokens
+
+
+# ---------------------------------------------------------------------------
+# Abstract syntax tree
+# ---------------------------------------------------------------------------
+
+class Node:
+    """Base class for AST nodes."""
+
+
+class Number(Node):
+    """A literal integer."""
+
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return "Number({})".format(self.value)
+
+
+class UnaryOp(Node):
+    """A unary operator applied to an operand, e.g. -x."""
+
+    def __init__(self, op, operand):
+        self.op = op          # "+" or "-"
+        self.operand = operand
+
+    def __repr__(self):
+        return "UnaryOp({!r}, {!r})".format(self.op, self.operand)
+
+
+class BinaryOp(Node):
+    """A binary operator with left and right operands."""
+
+    def __init__(self, op, left, right):
+        self.op = op          # "+", "-", "*", or "/"
+        self.left = left
+        self.right = right
+
+    def __repr__(self):
+        return "BinaryOp({!r}, {!r}, {!r})".format(
+            self.op, self.left, self.right
+        )
+
+
+# ---------------------------------------------------------------------------
+# Parser
+# ---------------------------------------------------------------------------
+
+class Parser:
+    """A recursive descent parser over a token list.
+
+    Each grammar rule is implemented as a method that consumes tokens
+    and returns an AST node. The parser keeps a single index into the
+    token list; there is no backtracking because the grammar is LL(1).
+    """
+
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.index = 0
+
+    # -- token stream helpers ------------------------------------------
+
+    def _current(self):
+        """Return the token under the cursor without consuming it."""
+        return self.tokens[self.index]
+
+    def _advance(self):
+        """Consume and return the current token."""
+        token = self.tokens[self.index]
+        self.index += 1
+        return token
+
+    def _expect(self, token_type):
+        """Consume a token of the given type or raise ParseError."""
+        token = self._current()
+        if token.type != token_type:
+            raise ParseError(
+                "expected {} but found {!r} at position {}".format(
+                    token_type, token.value, token.position
+                )
+            )
+        return self._advance()
+
+    # -- grammar rules --------------------------------------------------
+
+    def parse(self):
+        """Parse a complete expression and require end of input."""
+        node = self.expr()
+        # Anything left over (e.g. "1 2" or "1)") is an error.
+        self._expect(T_EOF)
+        return node
+
+    def expr(self):
+        """expr := term (("+" | "-") term)*"""
+        node = self.term()
+        while self._current().type in (T_PLUS, T_MINUS):
+            op_token = self._advance()
+            right = self.term()
+            node = BinaryOp(op_token.value, node, right)
+        return node
+
+    def term(self):
+        """term := factor (("*" | "/") factor)*"""
+        node = self.factor()
+        while self._current().type in (T_STAR, T_SLASH):
+            op_token = self._advance()
+            right = self.factor()
+            node = BinaryOp(op_token.value, node, right)
+        return node
+
+    def factor(self):
+        """factor := ("+" | "-") factor | primary"""
+        token = self._current()
+        if token.type in (T_PLUS, T_MINUS):
+            self._advance()
+            # Unary operators nest, so "--3" parses as -(-(3)).
+            operand = self.factor()
+            return UnaryOp(token.value, operand)
+        return self.primary()
+
+    def primary(self):
+        """primary := INTEGER | "(" expr ")" """
+        token = self._current()
+        if token.type == T_INTEGER:
+            self._advance()
+            return Number(token.value)
+        if token.type == T_LPAREN:
+            self._advance()
+            node = self.expr()
+            self._expect(T_RPAREN)
+            return node
+        raise ParseError(
+            "expected a number or '(' but found {!r} at position {}".format(
+                token.value, token.position
+            )
+        )
+
+
+# ---------------------------------------------------------------------------
+# Evaluator
+# ---------------------------------------------------------------------------
+
+def evaluate(node):
+    """Recursively evaluate an AST node and return its numeric value."""
+    if isinstance(node, Number):
+        return node.value
+
+    if isinstance(node, UnaryOp):
+        value = evaluate(node.operand)
+        return value if node.op == "+" else -value
+
+    if isinstance(node, BinaryOp):
+        left = evaluate(node.left)
+        right = evaluate(node.right)
+        if node.op == "+":
+            return left + right
+        if node.op == "-":
+            return left - right
+        if node.op == "*":
+            return left * right
+        if node.op == "/":
+            if right == 0:
+                raise EvaluationError("division by zero")
+            return left / right
+
+    raise EvaluationError("unknown node type: {!r}".format(node))
+
+
+def calculate(text):
+    """Tokenize, parse, and evaluate a source string in one call."""
+    tokens = tokenize(text)
+    tree = Parser(tokens).parse()
+    return evaluate(tree)
+
+
+# ---------------------------------------------------------------------------
+# Self-tests
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    # Basic literals and operators.
+    assert calculate("0") == 0
+    assert calculate("42") == 42
+    assert calculate("1 + 2") == 3
+    assert calculate("7 - 10") == -3
+    assert calculate("6 * 7") == 42
+    assert calculate("8 / 2") == 4.0
+
+    # Precedence and associativity.
+    assert calculate("2 + 3 * 4") == 14
+    assert calculate("2 * 3 + 4") == 10
+    assert calculate("10 - 4 - 3") == 3          # left associative
+    assert calculate("100 / 10 / 5") == 2.0      # left associative
+    assert calculate("2 + 12 / 4 * 3") == 11.0
+
+    # Parentheses.
+    assert calculate("(2 + 3) * 4") == 20
+    assert calculate("((1 + 2) * (3 + 4))") == 21
+    assert calculate("(((7)))") == 7
+
+    # Unary operators.
+    assert calculate("-3") == -3
+    assert calculate("--3") == 3
+    assert calculate("+5") == 5
+    assert calculate("-(2 + 3) * 4") == -20
+    assert calculate("2 * -3") == -6
+
+    # Whitespace tolerance.
+    assert calculate("  1+\t2 \n* 3 ") == 7
+
+    # Error handling.
+    for bad in ("", "1 +", "(1 + 2", "1 ** 2", "abc", "1 2"):
+        try:
+            calculate(bad)
+        except ExpressionError:
+            pass
+        else:
+            raise AssertionError("expected failure for {!r}".format(bad))
+
+    try:
+        calculate("1 / 0")
+    except EvaluationError:
+        pass
+    else:
+        raise AssertionError("expected division by zero error")
+
+    print("all self-tests passed")
