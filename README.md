@@ -14,6 +14,24 @@ any secret key.
 Read [`FINAL-REPORT.md`](FINAL-REPORT.md) first. Everything else is the evidence
 behind it.
 
+## Post-disclosure update: 15 August 2026
+
+Two days after this corpus and report were frozen, Anthropic published
+[How Claude's text watermark works](https://www.anthropic.com/news/claude-text-watermark).
+It identifies Claude's method as a version of SynthID-Text and states that nothing is
+added to the text and there are no hidden characters.
+
+That disclosure is compatible with the audit's Unicode result, but it does not make
+the corpus a test of Claude's statistical watermark. Anthropic has not published the
+production key, compatible detector, decision rule or model-by-model rollout status.
+Without those, this repository cannot directly score or exclude Claude's production
+mark. The dated source notes are in
+[`evidence/sources/`](evidence/sources/anthropic-news-claude-text-watermark-2026-08-15.md).
+
+The original 12 August corpus, controls, routes, analysis and manifest remain
+unchanged. A later private transcript diagnostic is deliberately excluded because it
+has no immutable input manifest and contains material that cannot be published.
+
 ## Why this is public
 
 This repository is the evidence behind two articles on
@@ -25,6 +43,9 @@ Claude output across four models, against 20,224 curly quotes in a human
 control corpus. Claims like that are worth very little if a reader cannot check
 them, so the corpus, the controls, the scanner, its test suite and a hashed
 manifest of every artefact are all here.
+
+The counted result is now best read as a test of a discarded hidden-character
+theory. It neither confirms nor refutes SynthID-Text.
 
 Nothing in this repository is affiliated with or endorsed by Anthropic. It
 neither reproduces nor interoperates with Anthropic's production watermark, and
@@ -186,6 +207,7 @@ evidence/
   raw/controls/              Human and synthetic controls + provenance
   routes/                    Presentation-route probe artefacts
   sources/                   Archived first-party Anthropic pages
+                             and dated post-disclosure source notes
 
 reports/
   official-sources.md        Subagent A - first-party documentation

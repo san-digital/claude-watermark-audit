@@ -1,5 +1,11 @@
 # Subagent D — Adversarial Review and Attack on Conclusions
 
+> **Pre-disclosure review:** Completed on 12 August 2026. Anthropic's 14 August
+> SynthID-Text announcement supersedes this review's statements that no first-party
+> mechanism description existed. The methodological criticism and frozen-corpus
+> review remain part of the record; see the post-disclosure note in
+> `FINAL-REPORT.md` for current conclusions.
+
 **Audit date:** 2026-08-12  
 **Reviewer model:** claude-haiku-4-5-20251001 (self-reported, unverified)
 
