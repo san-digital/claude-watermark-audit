@@ -7,6 +7,14 @@ Scope: detection and technical verification only. No attempt was made to remove,
 
 ---
 
+## Post-disclosure note, checked 15 August 2026
+
+Anthropic published [How Claude's text watermark works](https://www.anthropic.com/news/claude-text-watermark) on 14 August, after this report and corpus were frozen. The page identifies Claude's method as a version of SynthID-Text and says the text contains no added or hidden characters. The original null result is therefore compatible with Anthropic's description, but it is not a test of the disclosed statistical method.
+
+Anthropic still has not published its production key, exact configuration, usable detector, decision rule, error rates, reliable-length floor or model-by-model rollout status. Without Anthropic's key, an Anthropic-compatible detector and a published decision rule, this work cannot directly score or exclude the production watermark. The original 12 August findings below are preserved as the point-in-time report; statements that the mechanism itself was undisclosed are superseded by this note. See the dated [announcement note](evidence/sources/anthropic-news-claude-text-watermark-2026-08-15.md) and [Models API documentation check](evidence/sources/models-api-capabilities-2026-08-15.md).
+
+---
+
 ## 1. Executive conclusion
 
 Anthropic does officially say Claude watermarks generated text. Its support page, updated 10 August 2026, states that a supported model "weaves an imperceptible watermark directly into the text itself", applied at model level. It names **no exact model identifiers**, defining supported models only by a launch date of 2 August 2026. Every model tested here launched before that date, so under Anthropic's own documentation none is stated to be marking-enabled.
@@ -15,7 +23,7 @@ Across 457,045 characters of output from four models, **zero** hidden characters
 
 The popular claim is close to backwards. Human public-domain prose carried 20,224 curly quotes; the models produced none.
 
-This rules out a hidden-Unicode watermark in what was tested. It does **not** show Claude has no watermark. A token-selection watermark would leave no unusual characters, and could not be detected here.
+This rules out a hidden-Unicode watermark in what was tested. It does **not** show Claude has no watermark. Anthropic's later disclosure describes a token-selection watermark that would leave no unusual characters and cannot be detected with this corpus.
 
 ---
 
@@ -43,7 +51,7 @@ No API credential was present. Extracting the host application's stored credenti
 
 ---
 
-## 3. What Anthropic officially confirms
+## 3. What Anthropic officially confirmed by 12 August
 
 Source: *How Claude marks AI-generated content*, support.claude.com article 16266773, `dateModified` 2026-08-10T19:03:20Z. Archived at `evidence/sources/`.
 
@@ -63,7 +71,7 @@ Two defects in the source are worth recording. The page states the date rule twi
 
 ---
 
-## 4. What Anthropic has not disclosed
+## 4. What Anthropic had not disclosed by 12 August
 
 `Not supported by evidence` that any of the following is publicly documented:
 
@@ -280,7 +288,7 @@ Regenerating the corpus needs the Claude Code Agent tool with an authenticated s
 ## 13. Direct answers
 
 **Does Anthropic officially say Claude watermarks generated text?**
-Yes. `Confirmed by Anthropic documentation`. It describes an imperceptible watermark woven into text, applied at model level, surviving copy-paste. The tense mixes present and future, and whether it is live today cannot be read off the page.
+Yes. `Confirmed by Anthropic documentation`. Its 14 August announcement now identifies a version of SynthID-Text and describes keyed word selection. Whether any particular older model has received the ongoing rollout remains unpublished.
 
 **Which exact tested models support it?**
 None that Anthropic documents. Anthropic names no model identifiers at all and defines support purely by a 2 August 2026 launch date. All four tested models launched before it, placing them in the undated "in progress" bucket. `Not supported by evidence` that any tested model is marking-enabled, and equally not established that they are not.
@@ -295,22 +303,22 @@ No hidden characters at all: zero zero-width, bidi, tag, variation-selector or n
 The em dashes and check marks are genuine model output, reaching disk without passing through a renderer, terminal or clipboard. No local presentation layer introduced any Unicode. The terminal added only carriage returns. The raw-API-versus-web-interface comparison was `Test not possible in this environment`.
 
 **Is there evidence of a statistical watermark instead?**
-No evidence either way, and this environment cannot produce any. `Test not possible in this environment`. No positional or periodic structure survived correction, which weakly disfavours a crude positional scheme, but a token-selection watermark is entirely untouched by these tests. Anthropic's own "too little text for a reliable signal" caveat is more consistent with a statistical scheme than with inserted characters.
+Anthropic now states that Claude uses a version of SynthID-Text. That is an `official statement`, not a result reproduced by this audit. No positional or periodic structure survived correction, but those tests do not score SynthID-Text. Direct scoring remains `Test not possible in this environment` without Anthropic's key, compatible detector and decision rule.
 
 **Can any tested method reliably attribute arbitrary text to Claude?**
 No. `Not supported by evidence`. Nothing measured here attributes text to Claude. Stylistic tendencies are not machine-readable marks and are not reliable attribution. Anthropic itself says a detected mark is "not fully conclusive". Commercial AI detectors were not used and would not constitute evidence.
 
-**What remains unknown until Anthropic publishes its detector or method?**
-Whether marking is live on any current model; the text mechanism; which exact models carry it; the minimum reliable text length; false-positive and false-negative rates; robustness to editing, translation and paraphrase; whether detection will be public or gated; and whether marking varies by surface, region or account.
+**What remains unknown after the 14 August disclosure?**
+Which exact implementation and key Claude uses; which older models currently carry it; the minimum reliable length; the decision threshold and output scale; false-positive and false-negative rates; the detector's access and privacy terms; and whether behaviour varies by surface or model.
 
 ---
 
 ## Verdict
 
-Anthropic has committed publicly to watermarking Claude's text output and has said it will be imperceptible and applied at model level. It has not said how, has not named a single model that carries it, and has not shipped a detector.
+Anthropic has now identified Claude's text mark as a version of SynthID-Text and described its operation at a high level. It has not published the production key or exact configuration, named the older models already carrying it, or shipped a public detector.
 
 Against that, the widespread claim that Claude marks text with hidden or unusual Unicode characters does not survive contact with the evidence. In 457,045 characters from four models, through a collection path proven to carry such characters, there were none. The typographic version of the claim is not merely unsupported but points the wrong way: the human control had 20,224 curly quotes and the models had none.
 
 Two things this audit does not establish, and they are the ones most likely to be over-read. It does not show that Claude has no watermark: the most plausible mechanism, given Anthropic's own hint about short passages, is statistical, and no test available here could see it. And it does not speak for surfaces it could not reach, above all the raw API and the web interface.
 
-The honest summary is narrow and firm. **No hidden-Unicode watermark was found where one could have been found. Everything else remains open until Anthropic publishes its method.**
+The honest summary is narrow and firm. **No hidden-Unicode watermark was found where one could have been found. That result is compatible with Anthropic's later SynthID-Text disclosure and cannot test it.**

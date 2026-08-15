@@ -2,6 +2,12 @@
 
 Audit date: 2026-08-12. All access timestamps UTC.
 
+> **Post-disclosure status:** This report records the public record as it stood on
+> 12 August. Anthropic published a technical announcement on 14 August naming a
+> version of SynthID-Text. The dated update is recorded in
+> `evidence/sources/anthropic-news-claude-text-watermark-2026-08-15.md`; its newer
+> statements supersede this report's mechanism-disclosure negatives.
+
 ---
 
 ## Runtime model self-report
@@ -330,3 +336,20 @@ That is preparation language, three weeks before the support article, and the Hu
 **The load-bearing inference — and its limit.** The chain "Anthropic marks models launched on/after 2 Aug 2026" + "every current model launched before that date" ⇒ "no current model is documented as marking-enabled" is sound as a statement *about the documentation*. It is **not** proof that current output is unmarked. Anthropic explicitly says retrofitting is in progress and gives no completion date, so silent deployment to pre-August models is entirely possible. **Documentation cannot settle this; only experiment can.** I have deliberately not let the strength of the documentary finding leak into a claim about physical reality.
 
 **Residual risk:** help-centre pages are edited without version history, so wording may change after 2026-08-10T19:03:20Z. The archived verbatim copy in `evidence/sources/` is the fixed record for this audit.
+
+---
+
+## 15 August follow-up
+
+The follow-up opened Anthropic's 14 August announcement, the Help Centre article,
+the Platform release notes, the Models overview and the public Models API reference.
+Anthropic now says Claude uses a version of SynthID-Text and that no hidden
+characters are added. It says older-model rollout is continuing, but still names no
+older model as enabled and publishes no compatible detector, key, threshold or error
+rates.
+
+The documented Models API schema lists nine capability groups and `created_at`; it
+does not document marking or provenance status. No authenticated API response was
+captured, so no claim is made about the fields returned by a live account or about
+whether marking is enabled. The complete bounded observation is in
+`evidence/sources/models-api-capabilities-2026-08-15.md`.

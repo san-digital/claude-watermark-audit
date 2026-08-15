@@ -1,5 +1,10 @@
 # Archived source — negative-result sweeps across first-party Anthropic properties
 
+> **Historical snapshot:** These sweeps describe the public record on 12 August
+> 2026. Anthropic published a SynthID-Text announcement on 14 August. The original
+> counts are preserved rather than silently rewritten; see
+> `anthropic-news-claude-text-watermark-2026-08-15.md` for the later source check.
+
 - Retrieved (UTC): 2026-08-12T02:46Z – 03:05Z
 - Method: `curl -L` with a desktop user agent, saving raw bytes, then case-insensitive regex counting over the retrieved payload (server-rendered HTML includes the embedded JSON content payload, so this catches text that a markdown converter may drop). The PDF system card was converted with `pdftotext` before searching.
 - Purpose: establish where Anthropic does NOT mention watermarking, so that absence is recorded as evidence rather than assumed.
