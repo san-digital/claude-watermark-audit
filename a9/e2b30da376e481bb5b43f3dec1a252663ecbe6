@@ -1,0 +1,31 @@
+README.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 17-34,47-49,210
+evidence/sources/negative-sweeps-first-party.md
+  s_f74dbb26d88677::t_a3d0653798908c 3-7
+evidence/sources/models-api-capabilities-2026-08-15.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 1-21
+evidence/sources/anthropic-news-claude-text-watermark-2026-08-15.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 1-51
+reports/independent-review.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 3-8
+FINAL-REPORT.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 10-17,26,54,74,291,306,311-312,318,324
+reports/official-sources.md
+  s_f74dbb26d88677::t_5aa74d0129d8c4 5-10,339-355
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a9e2b30da376e481bb5b43f3dec1a252663ecbe6",
+  "prompts": {},
+  "sessions": {
+    "s_f74dbb26d88677": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff589-c5b7-7e92-a26d-b988d1db5fc0",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Lee Crossley <leee@hotmail.co.uk>"
+    }
+  }
+}
